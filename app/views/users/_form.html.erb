@@ -1,0 +1,43 @@
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="row">
+      <div class="large-12 columns">
+        <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+      </div>
+    </div>
+  <% end %>
+
+
+<div class="row">
+  <div class="large-4 small-12 columns">
+    <%= image_tag user.userpic_url(:thumb) if user.userpic? %>
+  </div>
+  <div class="large-8 small-12 columns">
+
+  </div>
+</div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

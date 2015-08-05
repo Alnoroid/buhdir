@@ -1,0 +1,48 @@
+<% provide(:title, "Пользователи") %>
+<div class="row">
+  <div class="large-12 small-12 columns large-centered">
+    <ul class="tabs" data-tab>
+      <li class="tab-title active"><a href="#user">Пользователи</a></li>
+      <li class="tab-title"><a href="#role">Роли</a></li>
+    </ul>
+
+    <div class="tabs-content">
+      <div class="content active" id="user">
+        <table>
+          <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Роль</th>
+            <th>Изображение</th>
+            <th colspan="4"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.surname %></td>
+                <td><%= user.role.name %></td>
+                <td><%= image_tag user.userpic, size: "50x50", alt: user.surname %></td>
+                <td><%= link_to 'Подробнее', user %></td>
+                <td><%= link_to 'Редактировать', edit_user_path(user) %></td>
+                <td><%= link_to 'Удалить', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= link_to 'Новый пользователь', new_user_path %>
+      </div>
+      <div class="content" id="role">
+        <p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
+      </div>
+    </div>
+
+
+    <br>
+
+
+  </div>
+</div>

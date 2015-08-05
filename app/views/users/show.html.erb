@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+
+<table>
+  <tr>
+    <td><strong>Имя пользователя:</strong></td>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td><strong>Имя:</strong></td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td><strong>Фамилия:</strong></td>
+    <td><%= @user.surname %></td>
+  </tr>
+  <tr>
+    <td><strong>e-mail:</strong></td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td><strong>Зарплата:</strong></td>
+    <td><%= @user.salary %></td>
+  </tr>
+  <tr>
+    <td><strong>Изображение:</strong></td>
+    <td><%= image_tag user.userpic, size: "50x50", alt: user.surname %></td>
+  </tr>
+  <tr>
+    <td><strong>Роль:</strong></td>
+    <td><%= @user.role.name %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Редактировать', edit_user_path(@user) %></td>
+    <td><%= link_to 'Назад', users_path %></td>
+  </tr>
+</table>
+
+
+

@@ -1,0 +1,41 @@
+# MySQL.  Versions 5.0+ are recommended.
+#
+# Install the MYSQL driver
+#   gem install mysql2
+#
+# Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+#
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: bd-development
+  pool: 5
+  username: webdev
+  password: Angron!1
+  host: localhost
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: bd-test
+  pool: 5
+  username: webdev
+  password: Angron!1
+  host: localhost
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: bd-production
+  pool: 5
+  username: webdev
+  password: Angron!1
+  host: localhost

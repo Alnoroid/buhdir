@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'vendor/modernizr' %>
+  <%= csrf_meta_tags %>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+</head>
+<body>
+<div id="growls"></div>
+<% if flash[:notice] %>
+    <script type="text/javascript">
+        $.growl.notice({title: "Уведомление", message: "<%= flash[:notice] %>",fixed:"true",duration:"5000",location:"tc"});
+    </script>
+<% end %>
+<% if flash[:alert] %>
+    <script type="text/javascript">
+        $.growl.error({title: "Ошибка", message: "<%= flash[:alert] %>",fixed:"true",duration:"5000",location:"tc"});
+    </script>
+<% end %>
+<div class="contain-to-grid sticky">
+  <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on:small,medium,large">
+    <ul class="title-area">
+      <li class="name">
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+      </li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="left">
+
+
+
+        <li class=""><%= link_to '<i class="fi-torso large"></i>Пользователи'.html_safe, users_path %></li>
+        <li class=""><a href="#"><i class="fi-asterisk large"></i>Мероприятия</a></li>
+        <li class=""><a href="#"><i class="fi-home large"></i>Складская</a></li>
+        <li class=""><a href="#"><i class="fi-price-tag large"></i>Прайс</a></li>
+        <li class=""><a href="#"><i class="fi-dollar large"></i>Финансы</a></li>
+        <li class=""><a href="#"><i class="fi-info large"></i>Статистика</a></li>
+      </ul>
+      <ul class="right">
+        <li><%= link_to "Здравствуйте #{current_user.name}" , edit_user_path(current_user.id) %></li>
+        <li><%= link_to "Выход", :logout %></li>
+      </ul>
+    </section>
+  </nav>
+</div>
+    <%= yield %>
+</body>
+</html>
