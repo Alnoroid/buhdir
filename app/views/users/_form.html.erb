@@ -18,30 +18,57 @@
 
 
       <div class="row">
-        <h1>Editing User</h1>
         <div class="large-4 small-12 columns">
-
+          <%= image_tag @user.userpic.url(:medium), alt: @user.surname%>
           <%= f.file_field :userpic %>
 
         </div>
         <div class="large-8 small-12 columns">
-
+          <div class="row">
+            <div class="large-6 small-12 columns">
+                <%= f.label :username,"Имя пользователя"%>
+                <%= f.text_field :username %>
+            </div>
+            <div class="large-6 small-12 columns">
+                <%= f.label :password,"Пароль" %>
+                <%= f.password_field :password %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-6 small-12 columns">
+              <%= f.label :name,"Имя"%>
+              <%= f.text_field :name %>
+            </div>
+            <div class="large-6 small-12 columns">
+              <%= f.label :surname,"Фамилия" %>
+              <%= f.text_field :surname %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-6 small-12 columns">
+              <%= f.label :email,"Email"%>
+              <%= f.text_field :email %>
+            </div>
+            <div class="large-6 small-12 columns">
+              <%= f.label :phone,"Телефон" %>
+              <%= f.text_field :phone %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-6 small-12 columns">
+              <%= f.label :salary,"Зарплата"%>
+              <%= f.text_field :salary %>
+            </div>
+            <div class="large-6 small-12 columns">
+              <%= f.label :user_role_id,"Роль" %>
+              <%= collection_select(:user, :role_id, Role.all, :id, :name) %>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="field">
-        <%= f.label :username %><br>
-        <%= f.text_field :username %>
-      </div>
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password %>
-      </div>
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation %>
-      </div>
+
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit class:"button" %>
       </div>
   <% end %>
   <%= link_to 'Show', @user %> |
