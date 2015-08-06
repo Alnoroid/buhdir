@@ -55,4 +55,5 @@ gem 'foundation-rails'
 gem 'jquery-growl-rails'
 
 #images
-
+gem "mini_magick"
+gem "paperclip", "~> 4.1.0"

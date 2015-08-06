@@ -34,14 +34,7 @@ class UsersController < ApplicationController
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-=begin
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-=end
+
     end
   end
 
@@ -69,21 +62,15 @@ class UsersController < ApplicationController
     end
   end
 
-  uploader = AvatarUploader.new
-
-  uploader.store!(storage)
-
-  uploader.retrieve_from_store!('users/userpic.png')
-  require 'carrierwave/orm/activerecord'
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      #params.require(:user).permit(:username, :crypted_password, :salt)
-      params.require(:user).permit(:username, :password, :password_confirmation)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    #params.require(:user).permit(:username, :crypted_password, :salt)
+    params.require(:user).permit(:username, :password, :password_confirmation, :userpic)
+  end
 end

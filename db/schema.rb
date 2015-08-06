@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728071019) do
+ActiveRecord::Schema.define(version: 20150806064946) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",        limit: 255,   null: false
@@ -23,17 +23,20 @@ ActiveRecord::Schema.define(version: 20150728071019) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",         limit: 255, null: false
-    t.string   "crypted_password", limit: 255
-    t.string   "salt",             limit: 255
-    t.string   "email",            limit: 255
-    t.string   "name",             limit: 255
-    t.string   "surname",          limit: 255
-    t.integer  "salary",           limit: 4
-    t.string   "userpic",          limit: 255
-    t.integer  "role_id",          limit: 4
+    t.string   "username",             limit: 255, null: false
+    t.string   "crypted_password",     limit: 255
+    t.string   "salt",                 limit: 255
+    t.string   "email",                limit: 255
+    t.string   "name",                 limit: 255
+    t.string   "surname",              limit: 255
+    t.integer  "salary",               limit: 4
+    t.integer  "role_id",              limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "userpic_file_name",    limit: 255
+    t.string   "userpic_content_type", limit: 255
+    t.integer  "userpic_file_size",    limit: 4
+    t.datetime "userpic_updated_at"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
