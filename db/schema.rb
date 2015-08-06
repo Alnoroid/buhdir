@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806064946) do
+ActiveRecord::Schema.define(version: 20150806112713) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",        limit: 255,   null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150806064946) do
     t.string   "userpic_content_type", limit: 255
     t.integer  "userpic_file_size",    limit: 4
     t.datetime "userpic_updated_at"
+    t.string   "phone",                limit: 255
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree

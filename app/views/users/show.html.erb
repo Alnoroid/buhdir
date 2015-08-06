@@ -22,7 +22,7 @@
   </tr>
   <tr>
     <td><strong>Изображение:</strong></td>
-
+    <td><%= image_tag @user.userpic.url(:medium), alt: @user.surname%></td>
   </tr>
   <tr>
     <td><strong>Роль:</strong></td>
