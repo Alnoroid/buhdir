@@ -36,7 +36,30 @@
         <%= link_to 'Новый пользователь', new_user_path %>
       </div>
       <div class="content" id="role">
-        <p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
+        <table>
+          <thead>
+          <tr>
+            <th>Название</th>
+            <th>Краткое описание</th>
+            <th>Описание</th>
+
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+#TODO доделать роли
+          <tbody>
+        <% @roles.each do |role| %>
+            <tr>
+              <td><%= role.name %></td>
+              <td><%= role.title %></td>
+              <td><%= role.description %></td>
+              <td><%= link_to 'Удалить',role , method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+            </tr>
+
+        <% end %>
+          </tbody>
+        </table>
+        <%= link_to 'Новая роль', new_user_path %>
       </div>
     </div>
 
