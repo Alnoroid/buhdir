@@ -1,0 +1,85 @@
+<%= form_for(@contact) do |f| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_name %><br>
+    <%= f.text_field :contact_name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :w_contact %><br>
+    <%= f.text_field :w_contact %>
+  </div>
+  <div class="field">
+    <%= f.label :web_address %><br>
+    <%= f.text_field :web_address %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :special %><br>
+    <%= f.text_field :special %>
+  </div>
+  <div class="field">
+    <%= f.label :fee %><br>
+    <%= f.text_field :fee %>
+  </div>
+  <div class="field">
+    <%= f.label :phone1 %><br>
+    <%= f.text_field :phone1 %>
+  </div>
+  <div class="field">
+    <%= f.label :phone2 %><br>
+    <%= f.text_field :phone2 %>
+  </div>
+  <div class="field">
+    <%= f.label :rating %><br>
+    <%= f.number_field :rating %>
+  </div>
+  <div class="field">
+    <%= f.label :publish %><br>
+    <%= f.text_field :publish %>
+  </div>
+  <div class="field">
+    <%= f.label :publish_date %><br>
+    <%= f.datetime_select :publish_date %>
+  </div>
+  <div class="field">
+    <%= f.label :hot %><br>
+    <%= f.text_field :hot %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_type_id %><br>
+    <%= f.number_field :contact_type_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

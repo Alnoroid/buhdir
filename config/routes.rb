@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :contacts
+  resources :contact_types
+  resources :contact_categories
   root :to => 'pages#home'
   resources :user_sessions
   resources :users

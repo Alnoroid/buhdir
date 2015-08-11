@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @contact.name %>
+</p>
+
+<p>
+  <strong>Contact name:</strong>
+  <%= @contact.contact_name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @contact.address %>
+</p>
+
+<p>
+  <strong>W contact:</strong>
+  <%= @contact.w_contact %>
+</p>
+
+<p>
+  <strong>Web address:</strong>
+  <%= @contact.web_address %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contact.email %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @contact.description %>
+</p>
+
+<p>
+  <strong>Special:</strong>
+  <%= @contact.special %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @contact.fee %>
+</p>
+
+<p>
+  <strong>Phone1:</strong>
+  <%= @contact.phone1 %>
+</p>
+
+<p>
+  <strong>Phone2:</strong>
+  <%= @contact.phone2 %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @contact.rating %>
+</p>
+
+<p>
+  <strong>Publish:</strong>
+  <%= @contact.publish %>
+</p>
+
+<p>
+  <strong>Publish date:</strong>
+  <%= @contact.publish_date %>
+</p>
+
+<p>
+  <strong>Hot:</strong>
+  <%= @contact.hot %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @contact.user_id %>
+</p>
+
+<p>
+  <strong>Contact type:</strong>
+  <%= @contact.contact_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>
