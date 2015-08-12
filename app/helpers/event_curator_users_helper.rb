@@ -1,0 +1,2 @@
+module EventCuratorUsersHelper
+end

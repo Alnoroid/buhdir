@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Event Curator Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_curator_users.each do |event_curator_user| %>
+      <tr>
+        <td><%= event_curator_user.event_id %></td>
+        <td><%= event_curator_user.user_id %></td>
+        <td><%= link_to 'Show', event_curator_user %></td>
+        <td><%= link_to 'Edit', edit_event_curator_user_path(event_curator_user) %></td>
+        <td><%= link_to 'Destroy', event_curator_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event curator user', new_event_curator_user_path %>
