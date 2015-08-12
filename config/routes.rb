@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :price_categories
+  resources :prices
   resources :contacts
   resources :contact_types
   resources :contact_categories

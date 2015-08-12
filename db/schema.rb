@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811135510) do
+ActiveRecord::Schema.define(version: 20150812010413) do
 
   create_table "contact_categories", force: :cascade do |t|
     t.string "name", limit: 255
@@ -29,19 +29,39 @@ ActiveRecord::Schema.define(version: 20150811135510) do
     t.string   "w_contact",       limit: 255
     t.string   "web_address",     limit: 255
     t.string   "email",           limit: 255
-    t.string   "description",     limit: 255
-    t.string   "special",         limit: 255
+    t.text     "description",     limit: 65535
+    t.text     "special",         limit: 65535
     t.string   "fee",             limit: 255
     t.string   "phone1",          limit: 255
     t.string   "phone2",          limit: 255
     t.integer  "rating",          limit: 4
-    t.binary   "publish",         limit: 65535
+    t.boolean  "publish",         limit: 1
     t.datetime "publish_date"
-    t.binary   "hot",             limit: 65535
+    t.boolean  "hot",             limit: 1
     t.integer  "user_id",         limit: 4
     t.integer  "contact_type_id", limit: 4
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "price_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.string   "title",              limit: 255
+    t.text     "description",        limit: 65535
+    t.integer  "price1",             limit: 4
+    t.integer  "price2",             limit: 4
+    t.integer  "price_category_id",  limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
   end
 
   create_table "roles", force: :cascade do |t|
