@@ -16,6 +16,7 @@
 //= require foundation
 //= require turbolinks
 //= require jquery.growl
+//= require smart_listing
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

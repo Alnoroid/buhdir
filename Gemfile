@@ -57,3 +57,6 @@ gem 'jquery-growl-rails'
 #images
 gem "mini_magick"
 gem "paperclip"
+
+#Поиск
+gem "smart_listing"

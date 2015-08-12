@@ -1,0 +1,40 @@
+<% unless smart_listing.empty? %>
+    <table class="table table-striped">
+      <thead>
+      <th class="col-md-3">
+        <%= "Name" %>
+      </th>
+      <th class="col-md-3">
+        <%= "Phone" %>
+      </th>
+      <th class="col-md-4">
+        <%= "Location" %>
+      </th>
+      <th>
+        <span class="glyphicon glyphicon-shopping-cart" title="Has credit card?"></span>
+      </th>
+      <th class="col-md-2">
+        <%= "Wallet saldo" %>
+      </th>
+      </thead>
+      <tbody>
+      <% smart_listing.collection.each do |o| %>
+          <tr>
+            <td><%= o.title %></td>
+            <td><%= o.description %></td>
+            <td><%= o.price1 %></td>
+            <td><%= o.price2 %></td>
+            <td><%= o.price_category_id %></td>
+            <td><%= link_to 'Show', o %></td>
+            <td><%= link_to 'Edit', edit_price_path(o) %></td>
+            <td><%= link_to 'Destroy', o, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% # Render nice pagination links fitted for Bootstrap 3 by default %>
+    <%= smart_listing.paginate %>
+    <%= smart_listing.pagination_per_page_links %>
+<% else %>
+    <p class="warning">No records!</p>
+<% end %>
