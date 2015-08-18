@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :places
+  resources :artists
   resources :events
   resources :event_curator_users
   resources :price_categories
