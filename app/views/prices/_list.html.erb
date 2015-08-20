@@ -1,20 +1,20 @@
 <% unless smart_listing.empty? %>
-    <table class="table table-striped">
+    <table>
       <thead>
-      <th class="col-md-3">
-        <%= "Name" %>
-      </th>
-      <th class="col-md-3">
-        <%= "Phone" %>
-      </th>
-      <th class="col-md-4">
-        <%= "Location" %>
+      <th>
+        <%= smart_listing.sortable "Наименование","title"  %>
       </th>
       <th>
-        <span class="glyphicon glyphicon-shopping-cart" title="Has credit card?"></span>
+        <%= smart_listing.sortable "Описание","description"  %>
       </th>
-      <th class="col-md-2">
-        <%= "Wallet saldo" %>
+      <th>
+        <%= smart_listing.sortable "Цена1","price1"  %>
+      </th>
+      <th>
+        <%= smart_listing.sortable "Цена2","price2"  %>
+      </th>
+      <th>
+        <%= smart_listing.sortable "Категория", "price_category_id" %>
       </th>
       </thead>
       <tbody>
@@ -25,9 +25,9 @@
             <td><%= o.price1 %></td>
             <td><%= o.price2 %></td>
             <td><%= o.price_category_id %></td>
-            <td><%= link_to 'Show', o %></td>
-            <td><%= link_to 'Edit', edit_price_path(o) %></td>
-            <td><%= link_to 'Destroy', o, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Подробнее', o %></td>
+            <td><%= link_to 'Редактировать', edit_price_path(o) %></td>
+            <td><%= link_to 'Удалить', o, method: :delete, data: { confirm: 'Уверены?' } %></td>
           </tr>
       <% end %>
       </tbody>

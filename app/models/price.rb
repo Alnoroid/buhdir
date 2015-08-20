@@ -1,7 +1,5 @@
 class Price < ActiveRecord::Base
 
-scope :titlesearch, -> (search) { where('title LIKE ?', "%#{search}%")}
-#  scope :titlesearch, -> (search) {where(title: 'Ди-джей')}
-scope :test, -> {where(title: 'Ди-джей')}
+scope :titlesearch, -> (search) { where('title LIKE ? OR id LIKE ?', "%#{search}%","#{search}")}
 
 end

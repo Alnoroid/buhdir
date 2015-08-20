@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  views:
+      pagination:
+        first: "« В начало"
+        previous: "&lt; Назад"
+        next: "Далее &gt;"
+        last: "В конец »"
+        truncate: "..."
