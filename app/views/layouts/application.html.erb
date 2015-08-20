@@ -22,7 +22,7 @@
         $.growl.error({title: "Ошибка", message: "<%= flash[:alert] %>",fixed:"true",duration:"5000",location:"tc"});
     </script>
 <% end %>
-<div class="contain-to-grid sticky">
+<div class="contain-to-grid">
   <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on:small,medium,large">
     <ul class="title-area">
       <li class="name">
@@ -33,7 +33,7 @@
       <ul class="left">
         <li class=""><%= link_to '<i class="fi-torso large"></i>Пользователи'.html_safe, users_path %></li>
         <li class=""><%= link_to '<i class="fi-torsos large"></i>Контакты'.html_safe, contacts_path %></li>
-        <li class=""><a href="#"><i class="fi-asterisk large"></i>Мероприятия</a></li>
+        <li class=""><%= link_to '<i class="fi-torsos large"></i>Мероприятия'.html_safe, events_path %></li>
         <li class=""><a href="#"><i class="fi-home large"></i>Складская</a></li>
         <li class=""><%= link_to '<i class="fi-price-tag large"></i>Прайс'.html_safe, prices_path %></li>
         <li class=""><a href="#"><i class="fi-dollar large"></i>Финансы</a></li>
