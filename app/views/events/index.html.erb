@@ -1,26 +1,48 @@
 <% provide(:title, "Мероприятия") %>
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+    <%= stylesheet_link_tag    'foundation-datepicker', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'foundation-datepicker' %>
+<% end %>
+
+
+<p></p>
 <div class="row">
+  <div class="large-6 small-12 medium-6 columns">
+    <%= smart_listing_controls_for(:events, {class: "form-inline"}) do %>
+        <div class="row">
+          <div class="large-4 columns">
+            <label>Кураторы
+            <%=select_tag :curator_filter, options_from_collection_for_select(User.all,"id","name") , include_blank: "Все..." %>
+            </label>
+          </div>
+          <div class="large-4 columns">
+            <label>Состояние
+            <%=select_tag :curator_filter, options_from_collection_for_select(User.all,"id","name") , include_blank: "Все..." %>
+            </label>
+          </div>
+          <div class="large-4 columns">
+            <label>После даты
+              <%= text_field_tag :date_filter %>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Поиск
+          <%= text_field_tag :filter, '', class: "search form-control", placeholder: "Поиск..." %>
+                </label>
+            </div>
+        </div>
+    <% end %>
+  </div>
   <div class="large-6 small-12 medium-6 columns">
     <%= link_to 'Новое событие', new_event_path %>
   </div>
-
-  <div class="large-6 small-12 medium-6 columns">
-
-  <%= smart_listing_controls_for(:events, {class: "form-inline text-right"}) do %>
-        <div class="checkbox">
-          <label class="checkbox inline">
-
-            <%= check_box_tag :in_work %>
-            <%= "В работе" %>
-          </label>
-        </div>
-      <div class="form-group filter input-append">
-        <%= text_field_tag :filter, '', class: "search form-control", placeholder: "Поиск..." %>
-    <% end %>
-  </div>
-</div>
 </div>
 <%= smart_listing_render :events %>
-
-
+<script>
+    $('#date_filter').fdatepicker({
+        language: 'ru',
+        format: 'yyyy-mm-dd'
+    });
+</script>

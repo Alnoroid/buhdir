@@ -5,13 +5,20 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+
+    #events_scope = Event.event_curator_users_filter(params[:curator_filter])
+    #events_scope = events_scope.event_curator_users_filter(params[:event_curator_users_filter])
+    #events_scope = events_scope.event_curator_users_filter if params[:event_curator_users_filter] == "1"
     events_scope = Event.title_search(params[:filter])
 
-    events_scope = events_scope.in_work if params[:in_work] == "1"
-
+    if (params[:curator_filter] != nil) && (params[:curator_filter] != "")
+      events_scope = events_scope.event_curator_users_filter(params[:curator_filter])
+    end
+    if (params[:date_filter] != nil) && (params[:date_filter] != "")
+      events_scope = events_scope.date_search(params[:date_filter])
+    end
     smart_listing_create :events,events_scope, partial: "events/list",
                          default_sort: {date_start: "desc"}
-
   end
 
   # GET /events/1
@@ -62,6 +69,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event.destroy
+
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }

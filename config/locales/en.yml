@@ -30,3 +30,9 @@ en:
         truncate: "..."
         per_page: "На страницу"
         total: "Всего"
+  date:
+     formats:
+     default: "%d/%m/%Y"
+  time:
+     formats:
+     default: "%d/%m/%Y %H:%M"

@@ -1,4 +1,5 @@
 <% unless smart_listing.empty? %>
+
     <div class="row">
     <table>
       <thead>
@@ -10,9 +11,7 @@
         <%= smart_listing.sortable "Дата начала","date_start"  %>
       </th>
       <th>Кураторы</th>
-      <th>
-        <%= smart_listing.sortable "Состояние","price2"  %>
-      </th>
+      <th>Состояние</th>
       <th>Предметы</th>
       </thead>
       <tbody>
@@ -21,17 +20,16 @@
             <td><%= link_to 'Удалить', o, method: :delete, data: { confirm: 'Уверены?' } %></td>
             <td><%= link_to 'Подробнее', edit_price_path(o) %></td>
             <td><%= o.name %></td>
-            <td><%= o.date_start %></td>
+            <td><%= o.date_start.to_date.strftime("%e.%m.%Y") %></td>
             <td>
-              <% o.event_curator_users.each do |curator| %>
-                  <% if curator.custom %>
-                      <%= curator.custom %>
-                      <br />
-                  <% elsif curator.user  %>
-                  <%= curator.user.name %>
-                      <br />
-                      <% end %>
-
+            <% o.event_curator_users.each do |curator| %>
+                <% if curator.custom %>
+                    <%= curator.custom %>
+                    <br />
+                <% elsif curator.user  %>
+                    <%= curator.user.name %>
+                    <br />
+                <% end %>
             <% end %>
             </td>
 
