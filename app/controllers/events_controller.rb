@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    events_scope = Event.titlesearch(params[:filter])
+    events_scope = Event.title_search(params[:filter])
 
     events_scope = events_scope.in_work if params[:in_work] == "1"
 

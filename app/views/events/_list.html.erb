@@ -22,11 +22,18 @@
             <td><%= link_to 'Подробнее', edit_price_path(o) %></td>
             <td><%= o.name %></td>
             <td><%= o.date_start %></td>
-
+            <td>
               <% o.event_curator_users.each do |curator| %>
-                <td><%= curator.user.name %></td>
-            <% end %>
+                  <% if curator.custom %>
+                      <%= curator.custom %>
+                      <br />
+                  <% elsif curator.user  %>
+                  <%= curator.user.name %>
+                      <br />
+                      <% end %>
 
+            <% end %>
+            </td>
 
             <td><%= o.condition %></td>
             <td></td>
