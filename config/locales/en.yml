@@ -28,3 +28,5 @@ en:
         next: "Далее &gt;"
         last: "В конец »"
         truncate: "..."
+        per_page: "На страницу"
+        total: "Всего"

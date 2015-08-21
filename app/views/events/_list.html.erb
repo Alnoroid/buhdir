@@ -1,0 +1,43 @@
+<% unless smart_listing.empty? %>
+    <div class="row">
+    <table>
+      <thead>
+      <th colspan="2"></th>
+      <th>
+        <%= smart_listing.sortable "Название","name"  %>
+      </th>
+      <th>
+        <%= smart_listing.sortable "Дата начала","date_start"  %>
+      </th>
+      <th>Кураторы</th>
+      <th>
+        <%= smart_listing.sortable "Состояние","price2"  %>
+      </th>
+      <th>Предметы</th>
+      </thead>
+      <tbody>
+      <% smart_listing.collection.each do |o| %>
+          <tr>
+            <td><%= link_to 'Удалить', o, method: :delete, data: { confirm: 'Уверены?' } %></td>
+            <td><%= link_to 'Подробнее', edit_price_path(o) %></td>
+            <td><%= o.name %></td>
+            <td><%= o.date_start %></td>
+
+              <% o.event_curator_users.each do |curator| %>
+                <td><%= curator.user.name %></td>
+            <% end %>
+
+
+            <td><%= o.condition %></td>
+            <td></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% # Render nice pagination links fitted for Bootstrap 3 by default %>
+    <%= smart_listing.paginate %>
+    <%= smart_listing.pagination_per_page_links %>
+        </div>
+<% else %>
+    <p class="warning">Нет записей!</p>
+<% end %>

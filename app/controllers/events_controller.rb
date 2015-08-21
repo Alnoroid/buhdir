@@ -1,10 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  include SmartListing::Helper::ControllerExtensions
+  helper SmartListing::Helper
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    events_scope = Event.titlesearch(params[:filter])
+
+    events_scope = events_scope.in_work if params[:in_work] == "1"
+
+    smart_listing_create :events,events_scope, partial: "events/list",
+                         default_sort: {date_start: "desc"}
+
   end
 
   # GET /events/1
@@ -69,6 +76,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :place, :place_type, :event_type, :date_start, :date_finish, :date_load, :client, :greeter, :description, :condition)
+      params.require(:event).permit(:name, :place, :place_type, :event_type, :date_load, :client, :greeter, :description, :condition)
     end
 end
