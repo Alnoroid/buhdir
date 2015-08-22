@@ -20,7 +20,11 @@
             <td><%= link_to 'Удалить', o, method: :delete, data: { confirm: 'Уверены?' } %></td>
             <td><%= link_to 'Подробнее', edit_price_path(o) %></td>
             <td><%= o.name %></td>
-            <td><%= o.date_start.to_date.strftime("%e.%m.%Y") %></td>
+            <td>
+              <% if o.date_start then %>
+                  <%= o.date_start.to_date.strftime("%e.%m.%Y") %>
+              <% end %>
+            </td>
             <td>
             <% o.event_curator_users.each do |curator| %>
                 <% if curator.custom %>

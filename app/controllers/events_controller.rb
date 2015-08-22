@@ -14,6 +14,11 @@ class EventsController < ApplicationController
     if (params[:curator_filter] != nil) && (params[:curator_filter] != "")
       events_scope = events_scope.event_curator_users_filter(params[:curator_filter])
     end
+
+    if (params[:state_filter] != nil) && (params[:state_filter] != "")
+      events_scope = events_scope.state_filter(params[:state_filter])
+    end
+
     if (params[:date_filter] != nil) && (params[:date_filter] != "")
       events_scope = events_scope.date_search(params[:date_filter])
     end
