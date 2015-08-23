@@ -1,24 +1,25 @@
 <% unless smart_listing.empty? %>
 
     <div class="row">
-    <table>
+    <table class="showtable">
       <thead>
-      <th colspan="2"></th>
-      <th>
+      <th style="width:5%;">Удалить</th>
+      <th style="width:5%;">Редактировать</th>
+      <th style="width:40%;">
         <%= smart_listing.sortable "Название","name"  %>
       </th>
-      <th>
+      <th style="width:10%;">
         <%= smart_listing.sortable "Дата начала","date_start"  %>
       </th>
-      <th>Кураторы</th>
-      <th>Состояние</th>
-      <th>Предметы</th>
+      <th style="width:10%;">Кураторы</th>
+      <th style="width:10%;">Состояние</th>
+      <th style="width:20%;">Предметы</th>
       </thead>
       <tbody>
       <% smart_listing.collection.each do |o| %>
           <tr>
-            <td><%= link_to 'Удалить', o, method: :delete, data: { confirm: 'Уверены?' } %></td>
-            <td><%= link_to 'Подробнее', edit_price_path(o) %></td>
+            <td><%= link_to '<i class="fi-x"></i>'.html_safe, o, method: :delete, data: { confirm: 'Уверены?' } %></td>
+            <td><%= link_to '<i class="fi-widget"></i>'.html_safe, edit_price_path(o) %></td>
             <td><%= o.name %></td>
             <td>
               <% if o.date_start then %>

@@ -1293,13 +1293,13 @@ $black       : #000000;
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-// $table-bg: $white;
-// $table-even-row-bg: $snow;
+$table-bg: $gainsboro;
+$table-even-row-bg: $iron;
 
 // These control the table cell border style
-// $table-border-style: solid;
-// $table-border-size: 1px;
-// $table-border-color: $gainsboro;
+ $table-border-style: solid;
+ $table-border-size: 1px;
+ $table-border-color: $gainsboro;
 
 // These control the table head styles
 // $table-head-bg: $white-smoke;
@@ -1485,6 +1485,20 @@ $tabs-vertical-navigation-margin-bottom: 1.25rem;
 // $include-accessibility-classes: true;
 // $include-table-visibility-classes: true;
 // $include-legacy-visibility-classes: true;
+
+.valign-middle {
+  display: table;
+
+  > .columns {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  > .columns, > [class*="column"] + [class*="column"]:last-child {
+    float: none;
+  }
+}
+
 
 @import 'foundation';
 

@@ -26,3 +26,28 @@
 body{
 padding-top: 1px;
 }
+
+.showtable{
+    width:100%;
+}
+
+.showtable td:nth-child(1),.showtable td:nth-child(2){
+    text-align:center;
+}
+
+
+.showtable tbody>tr:hover{
+    background-color: #e7e7e7;
+}
+
+.showtable a{
+    display: block;
+}
+
+.showtable i{
+    color: #000;
+}
+
+.showtable tbody{
+    background-color:#ffffff;
+}
