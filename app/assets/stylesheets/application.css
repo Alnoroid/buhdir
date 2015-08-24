@@ -14,7 +14,8 @@
  *
  *= require_tree .
  *= require_self
-
+ *= require selectize
+ *= require selectize.default
  *= require jquery.growl
  *= require foundation_and_overrides
  */

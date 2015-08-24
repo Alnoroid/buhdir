@@ -33,7 +33,15 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+
     @event = Event.new
+    @event.event_curator_users.build()
+    #@custom = EventCuratorUser.new
+    #@client = @event.build_client
+    #@client = Client.new
+    #@client = @event.build_client
+
+    #@event_curator_users = EventCuratorUser.new
   end
 
   # GET /events/1/edit
@@ -43,6 +51,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+
     @event = Event.new(event_params)
 
     respond_to do |format|
@@ -81,6 +90,7 @@ class EventsController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -89,6 +99,11 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :place, :place_type, :event_type, :date_load, :client, :greeter, :description, :condition)
+      params.require(:event).permit(:name, :place, :place_type, :event_type,:date_start,:date_finish, :date_load, :greeter, :description,:client_id, :condition,event_curator_users_attributes: [:id,:user_id,:event_id,:custom])
+      #params.require(:event).permit(client_attributes: [:id, :name, :phone, :email, :notes])
+      #params.require(:event).permit!
     end
+
+
+
 end

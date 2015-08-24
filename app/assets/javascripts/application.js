@@ -18,6 +18,7 @@
 //= require jquery.growl
 //= require smart_listing
 //= require foundation-datetimepicker
+//= require selectize
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
