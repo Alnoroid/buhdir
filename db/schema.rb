@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820061239) do
+ActiveRecord::Schema.define(version: 20150824022034) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "title",             limit: 255
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20150820061239) do
     t.integer  "price_category_id", limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "email",      limit: 255
+    t.text     "notes",      limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "contact_categories", force: :cascade do |t|
@@ -67,7 +76,7 @@ ActiveRecord::Schema.define(version: 20150820061239) do
     t.datetime "date_start"
     t.datetime "date_finish"
     t.datetime "date_load"
-    t.string   "client",      limit: 255
+    t.integer  "client_id",   limit: 4
     t.string   "greeter",     limit: 255
     t.text     "description", limit: 65535
     t.string   "condition",   limit: 255
@@ -113,7 +122,7 @@ ActiveRecord::Schema.define(version: 20150820061239) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",             limit: 255, null: false
+    t.string   "username",             limit: 255,   null: false
     t.string   "crypted_password",     limit: 255
     t.string   "salt",                 limit: 255
     t.string   "email",                limit: 255
@@ -128,6 +137,10 @@ ActiveRecord::Schema.define(version: 20150820061239) do
     t.integer  "userpic_file_size",    limit: 4
     t.datetime "userpic_updated_at"
     t.string   "phone",                limit: 255
+    t.text     "notes",                limit: 65535
+    t.date     "birth_date"
+    t.date     "employ_date"
+    t.boolean  "deleted",              limit: 1
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
