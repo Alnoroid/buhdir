@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @event_price.event_id %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @event_price.artist_id %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @event_price.place_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @event_price.price_id %>
+</p>
+
+<p>
+  <strong>Custom name:</strong>
+  <%= @event_price.custom_name %>
+</p>
+
+<p>
+  <strong>Custom description:</strong>
+  <%= @event_price.custom_description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @event_price.price %>
+</p>
+
+<p>
+  <strong>Price from:</strong>
+  <%= @event_price.price_from %>
+</p>
+
+<%= link_to 'Edit', edit_event_price_path(@event_price) %> |
+<%= link_to 'Back', event_prices_path %>

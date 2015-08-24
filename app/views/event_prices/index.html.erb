@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Event Prices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Artist</th>
+      <th>Place</th>
+      <th>Price</th>
+      <th>Custom name</th>
+      <th>Custom description</th>
+      <th>Price</th>
+      <th>Price from</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_prices.each do |event_price| %>
+      <tr>
+        <td><%= event_price.event_id %></td>
+        <td><%= event_price.artist_id %></td>
+        <td><%= event_price.place_id %></td>
+        <td><%= event_price.price_id %></td>
+        <td><%= event_price.custom_name %></td>
+        <td><%= event_price.custom_description %></td>
+        <td><%= event_price.price %></td>
+        <td><%= event_price.price_from %></td>
+        <td><%= link_to 'Show', event_price %></td>
+        <td><%= link_to 'Edit', edit_event_price_path(event_price) %></td>
+        <td><%= link_to 'Destroy', event_price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event price', new_event_price_path %>

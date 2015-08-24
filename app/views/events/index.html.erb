@@ -36,12 +36,12 @@
     <% end %>
   </div>
   <div class="large-6 small-12 medium-6 columns">
-    <%= link_to 'Новое Мероприятие', new_event_path, class: "button expand" %>
+    <%= link_to 'Создать коммерческое предложение', new_event_path, class: "button expand" %>
   </div>
 </div>
 <%= smart_listing_render :events %>
 <script>
-    $('#date_filter').fdatepicker({
+    $('#date_filter').fdatetimepicker({
         language: 'ru',
         format: 'yyyy-mm-dd'
     });

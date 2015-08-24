@@ -1,6 +1,6 @@
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
-    <div id="error_explanation">
+    <div class="large-12 columns" id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
@@ -10,52 +10,45 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+  <div class="large-3 columns">
+    <label>Наименование
+      <%= f.text_field :name %>
+    </label>
+  </div>
+  <div class="large-3 columns">
+    <label>Место проведения
+      <%= f.text_field :place %>
+    </label>
+  </div>
+  <div class="large-3 columns">
+    <label>Тип места
+      <%= f.select :place_type, ['помещение','улица','улица и помещение'],{:include_blank => true} %>
+    </label>
+  </div>
+  <div class="large-3 columns">
+    <label>Тип мероприятия
+      <%= f.select :place_type, ['частное','техническое','спорт','свадьба','массовое','корпоратив'],{:include_blank => true} %>
+    </label>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :place %><br>
-    <%= f.text_field :place %>
-  </div>
-  <div class="field">
-    <%= f.label :place_type %><br>
-    <%= f.number_field :place_type %>
-  </div>
-  <div class="field">
-    <%= f.label :event_type %><br>
-    <%= f.number_field :event_type %>
-  </div>
-  <div class="field">
-    <%= f.label :date_start %><br>
-    <%= f.datetime_select :date_start %>
-  </div>
-  <div class="field">
-    <%= f.label :date_finish %><br>
-    <%= f.datetime_select :date_finish %>
-  </div>
-  <div class="field">
-    <%= f.label :date_load %><br>
-    <%= f.datetime_select :date_load %>
-  </div>
-  <div class="field">
-    <%= f.label :client %><br>
-    <%= f.text_field :client %>
-  </div>
-  <div class="field">
-    <%= f.label :greeter %><br>
-    <%= f.text_field :greeter %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :condition %><br>
-    <%= f.number_field :condition %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+    <div class="row">
+      <div class="large-4 columns">
+        <label>Дата начала
+          <%= f.text_field :date_start %>
+        </label>
+      </div>
+      <div class="large-4 columns">
+        <label>Дата окончания
+          <%= f.text_field :date_finish %>
+        </label>
+      </div>
+      <div class="large-4 columns">
+        <label>Дата погрузки
+          <%= f.text_field :date_load %>
+        </label>
+      </div>
+    </div>
 <% end %>
+
