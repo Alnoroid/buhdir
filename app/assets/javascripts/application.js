@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require jquery.growl
 //= require smart_listing
+//= require foundation-datetimepicker
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

@@ -1,7 +1,6 @@
 <% provide(:title, "Мероприятия") %>
 <% content_for :head do %>
-    <%= stylesheet_link_tag    'foundation-datepicker', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'foundation-datepicker' %>
+
 <% end %>
 
 
@@ -43,6 +42,9 @@
 <script>
     $('#date_filter').fdatetimepicker({
         language: 'ru',
-        format: 'yyyy-mm-dd'
+        weekStart: 1,
+        minuteStep: 15,
+        minView: 2,
+        format: "dd.mm.yyyy"
     });
 </script>

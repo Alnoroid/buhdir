@@ -60,3 +60,6 @@ gem "paperclip"
 
 #Поиск
 gem "smart_listing"
+
+#Для дат и времени
+gem 'foundation-datetimepicker-rails'

@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     end
 
     if (params[:date_filter] != nil) && (params[:date_filter] != "")
-      events_scope = events_scope.date_search(params[:date_filter])
+      events_scope = events_scope.date_search(Date.parse(params[:date_filter]))
     end
     smart_listing_create :events,events_scope, partial: "events/list",
                          default_sort: {date_start: "desc"}
