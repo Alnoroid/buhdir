@@ -28,7 +28,7 @@
   </div>
   <div class="large-3 columns">
     <label>Тип мероприятия
-      <%= f.select :place_type, ['частное','техническое','спорт','свадьба','массовое','корпоратив'],{:include_blank => true} %>
+      <%= f.select :event_type, ['частное','техническое','спорт','свадьба','массовое','корпоратив'],{:include_blank => true} %>
     </label>
   </div>
 
@@ -51,7 +51,28 @@
       </div>
     </div>
     <div class="row">
-
+      <%= f.fields_for :client do |fa| %>
+          <div class="large-3 columns">
+            <label>Имя заказчика
+              <%= fa.text_field :name %>
+            </label>
+          </div>
+          <div class="large-3 columns">
+            <label>Телефон заказчика
+              <%= fa.text_field :phone %>
+            </label>
+          </div>
+          <div class="large-3 columns">
+            <label>Email заказчика
+              <%= fa.text_field :email %>
+            </label>
+          </div>
+          <div class="large-3 columns">
+            <label>Замечания к заказчику
+              <%= fa.text_field :notes %>
+            </label>
+          </div>
+      <% end %>
     </div>
     <div class="row">
       <%= f.fields_for :event_curator_users do |fb| %>

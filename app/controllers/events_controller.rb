@@ -36,6 +36,7 @@ class EventsController < ApplicationController
 
     @event = Event.new
     @event.event_curator_users.build()
+    @event.build_client
     #@custom = EventCuratorUser.new
     #@client = @event.build_client
     #@client = Client.new
@@ -99,7 +100,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :place, :place_type, :event_type,:date_start,:date_finish, :date_load, :greeter, :description,:client_id, :condition,event_curator_users_attributes: [:id,:user_id,:event_id,:custom])
+      params.require(:event).permit(:name, :place, :place_type, :event_type, :date_start, :date_finish, :date_load, :greeter, :description,:client_id, :condition, event_curator_users_attributes: [:id,:user_id,:event_id,:custom], client_attributes: [:name, :phone, :email, :notes])
       #params.require(:event).permit(client_attributes: [:id, :name, :phone, :email, :notes])
       #params.require(:event).permit!
     end
