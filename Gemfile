@@ -66,3 +66,6 @@ gem 'foundation-datetimepicker-rails'
 
 #Для добавления новых пользователей и их выбора(Включая custom),как бонус удобный поиск
 gem "selectize-rails"
+
+#Для сложных форм
+gem "cocoon"

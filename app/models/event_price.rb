@@ -1,5 +1,7 @@
 class EventPrice < ActiveRecord::Base
-  has_many :artists
-  has_many :prices
-  has_many :places
+  belongs_to :event
+
+  #has_one :artist
+  has_one :price
+  #has_one :place
 end

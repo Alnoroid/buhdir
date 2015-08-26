@@ -78,7 +78,7 @@
       <%= f.fields_for :event_curator_users do |fb| %>
           <div class="large-6 columns">
             <label>Куратор
-              <%=fb.select :user_id, options_from_collection_for_select(User.all,"id","name"), include_blank: true %>
+              <%=fb.select :user_id, options_from_collection_for_select(User.all,"id","name") %>
             </label>
           </div>
       <% end %>
@@ -91,12 +91,19 @@
     <div class="row">
       <div class="large-12 columns">
         <label>Описание
-          <%= f.text_area :description, rows: 10 %>
+          <%= f.text_area :description, rows: 5 %>
         </label>
       </div>
     </div>
+    <div class="row">
+      <%= f.fields_for :event_prices do |fc| %>
+          <%= render 'event_price_fields', f: fc %>
+          <%= link_to_add_association 'Добавить', f, :event_prices %>
+    <% end %>
+    </div>
     <div class="actions row">
-      <%= f.submit class:"button" %>
+      <%= link_to "Назад", events_path,class:"button" %>
+      <%= f.submit "Создать", class:"button" %>
     </div>
 
 
@@ -121,6 +128,10 @@
                 }
             }
         })
+        $('#event_event_curator_users_attributes_0_user_id')[0].selectize.setValue(<%= current_user.id %>);
+        //$('#event_event_curator_users_attributes_0_user_id')[0].selectize.disable();
+        //$( "#event_condition" ).prop( "disabled", true );
+
     </script>
 
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824030825) do
+ActiveRecord::Schema.define(version: 20150826100704) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "title",             limit: 255
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150824030825) do
     t.text    "custom_description", limit: 65535
     t.integer "price",              limit: 4
     t.boolean "price_from",         limit: 1
+    t.integer "count",              limit: 4
   end
 
   create_table "events", force: :cascade do |t|

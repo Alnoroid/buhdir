@@ -19,6 +19,7 @@
 //= require smart_listing
 //= require foundation-datetimepicker
 //= require selectize
+//= require cocoon
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
