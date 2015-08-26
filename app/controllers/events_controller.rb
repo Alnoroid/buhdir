@@ -35,7 +35,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.event_curator_users.build
-    @event.event_prices.build
+    #@event.event_prices.build
     @event.build_client
     #@custom = EventCuratorUser.new
     #@client = @event.build_client

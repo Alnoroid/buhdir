@@ -96,11 +96,30 @@
       </div>
     </div>
     <div class="row">
-      <%= f.fields_for :event_prices do |fc| %>
-          <%= render 'event_price_fields', f: fc %>
-          <%= link_to_add_association 'Добавить', f, :event_prices %>
-    <% end %>
+      <div class="large-2 columns">
+        <%= link_to_add_association 'Добавить', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand" %>
+        </div>
+      <div class="large-10 columns">
+      <table class="showtable">
+        <thead>
+        <tr>
+          <th style="width:10%;">Изображение</th>
+          <th style="width:20%;">Наименование</th>
+          <th style="width:35%;">Описание</th>
+          <th style="width:10%;">Цена</th>
+          <th style="width:10%;">Количество</th>
+          <th style="width:10%;">Удалить</th>
+        </tr>
+        </thead>
+        <tbody  id="event_price_table">
+        <%= f.fields_for :event_prices do |fc| %>
+            <%= render 'event_price_fields', f: fc %>
+        <% end %>
+        </tbody>
+      </table>
+      </div>
     </div>
+
     <div class="actions row">
       <%= link_to "Назад", events_path,class:"button" %>
       <%= f.submit "Создать", class:"button" %>
