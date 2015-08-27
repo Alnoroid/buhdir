@@ -1,3 +1,6 @@
+<%= smart_listing_controls_for(:prices, {class: "form-inline"}) do %>
+    <%= select_tag :price_category_filter, options_from_collection_for_select(PriceCategory.all,"id","name"),{:include_blank => "Все категории"} %>
+<% end %>
 <%= form_for @event do |f| %>
   <% if @event.errors.any? %>
     <div class="large-12 columns" id="error_explanation">
@@ -95,35 +98,41 @@
         </label>
       </div>
     </div>
+
     <div class="row">
-      <div class="large-2 columns">
-        <%= link_to_add_association 'Добавить', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand" %>
-        </div>
+      <div class="large-2 columns" id="prices_form">
+
+        <%= smart_listing_render :prices %>
+        <%= link_to_add_association 'Добавить', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand",js:true %>
+      </div>
       <div class="large-10 columns">
-      <table class="showtable">
-        <thead>
-        <tr>
-          <th style="width:10%;">Изображение</th>
-          <th style="width:20%;">Наименование</th>
-          <th style="width:35%;">Описание</th>
-          <th style="width:10%;">Цена</th>
-          <th style="width:10%;">Количество</th>
-          <th style="width:10%;">Удалить</th>
-        </tr>
-        </thead>
-        <tbody  id="event_price_table">
-        <%= f.fields_for :event_prices do |fc| %>
-            <%= render 'event_price_fields', f: fc %>
-        <% end %>
-        </tbody>
-      </table>
+        <table class="showtable">
+          <thead>
+          <tr>
+            <th style="width:10%;">Изображение</th>
+            <th style="width:20%;">Наименование</th>
+            <th style="width:35%;">Описание</th>
+            <th style="width:10%;">Цена</th>
+            <th style="width:10%;">Количество</th>
+            <th style="width:10%;">Удалить</th>
+          </tr>
+          </thead>
+          <tbody  id="event_price_table">
+          <%= f.fields_for :event_prices do |fc| %>
+              <%= render 'event_price_fields', f: fc %>
+          <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
-
     <div class="actions row">
       <%= link_to "Назад", events_path,class:"button" %>
       <%= f.submit "Создать", class:"button" %>
+      
     </div>
+<% end %>
+
+
 
 
     <script>
@@ -146,12 +155,65 @@
                     $('#event_event_curator_users_attributes_0_user_id').attr('name','event[event_curator_users_attributes][0][custom]');
                 }
             }
-        })
+        });
+
+        //Default Values
         $('#event_event_curator_users_attributes_0_user_id')[0].selectize.setValue(<%= current_user.id %>);
+
+
         //$('#event_event_curator_users_attributes_0_user_id')[0].selectize.disable();
         //$( "#event_condition" ).prop( "disabled", true );
+        //var options = $("").text();
 
+        function eventpriceselectize(){
+        $('#event-price').selectize({
+            create: true,
+            sortField: "text",
+            valueField: 'id',
+            labelField: 'title',
+            searchField: ['title','id'],
+
+            render:{
+                item: function(item, escape)
+                {
+                    var itemarray = item.title.split('|');
+                    return '<div>'+
+                            (itemarray[0] ? '<span class="title">' + escape(itemarray[0]) + '</span>' : "")+
+                                    '</div>';
+
+                },
+                option: function(item,escape)
+                {
+                    var itemarray = item.title.split('|');
+                    return '<div>'+
+                    (itemarray[0] ? '<span class="title">' + itemarray[0] + '</span>' : "")+
+                    (itemarray[1] ? '<span class="description" style="display:none;">' + itemarray[1] + '</span>' : "")+
+                    (itemarray[2] ? '<span class="image" style="display:none;">' + itemarray[2] + '</span>' : "")+
+                    (itemarray[3] ? '<span class="price1" style="display:none;">' + itemarray[3] + '</span>' : "")+
+                    (itemarray[4] ? '<span class="price2" style="display:none;">' + itemarray[4] + '</span>' : "")+
+                    '</div>';
+                }
+            }
+        });
+
+            //$('#event-price')[0].selectize.setValue(1);
+            //$('#event-price')[0].selectize.setValue($(".selectize-dropdown-content div:nth-child(2)").attr("data-value"));
+};
+        $('#event_price_table').on('cocoon:after-insert', function(e, insertedItem) {
+            insertedItem.find('.name').val($(".selectize-dropdown-content .selected .title").text().trim());
+            insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
+            var imagelink =
+            insertedItem.find('.image').attr("src",'/assets/' + $(".selectize-dropdown-content .selected .image").text().trim().replace("images/",""));
+
+            insertedItem.find('.price1').val($(".selectize-dropdown-content .selected .price1").text().trim());
+            insertedItem.find('.count').val("1");
+        });
+
+        $( document ).ajaxComplete(function() {
+            eventpriceselectize();
+        });
+
+        eventpriceselectize();
+        //Грязный хак для того, чтобы всё было красиво
+        $(".smart-listing-controls").prependTo("#prices_form");
     </script>
-
-<% end %>
-

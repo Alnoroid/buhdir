@@ -1,18 +1,18 @@
 <tr class="nested-field">
   <td>
-    Картинка.джипег
+    <img src="" class="image"/>
   </td>
   <td>
-    <%= f.text_field :custom_name %>
+    <%= f.text_field :custom_name, class:"name" %>
   </td>
   <td>
-    <%= f.text_field :custom_description %>
+    <%= f.text_field :custom_description, class:"description" %>
   </td>
   <td>
-    <%= f.text_field :price %>
+    <%= f.text_field :price, class:"price1" %>
   </td>
   <td>
-    <%= f.text_field :count %>
+    <%= f.text_field :count, class:"count" %>
   </td>
   <td>
   <%= link_to_remove_association "Удалить", f,wrapper_class: 'nested-field' %>

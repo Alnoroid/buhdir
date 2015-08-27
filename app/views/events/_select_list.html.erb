@@ -1,0 +1,19 @@
+<% unless smart_listing.empty? %>
+<select id="event-price">
+  <% smart_listing.collection.each do |o| %>
+      <option value="<%= o.id %>">
+        <%= o.title %>
+        |
+        <%= o.description %>
+        |
+        <%= o.image_file_name %>
+        |
+        <%= o.price1 %>
+        |
+        <%= o.price2 %>
+      </option>
+  <% end %>
+    </select>
+<% else %>
+    <p class="warning">Нет записей!</p>
+<% end %>
