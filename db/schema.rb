@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20150826100704) do
     t.integer "price_id",           limit: 4
     t.string  "custom_name",        limit: 255
     t.text    "custom_description", limit: 65535
-    t.integer "price",              limit: 4
+    t.integer "cost",              limit: 4
     t.boolean "price_from",         limit: 1
     t.integer "count",              limit: 4
   end

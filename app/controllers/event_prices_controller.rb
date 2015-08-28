@@ -69,6 +69,6 @@ class EventPricesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_price_params
-      params.require(:event_price).permit(:event_id, :artist_id, :place_id, :price_id, :custom_name, :custom_description, :price, :price_from)
+      params.require(:event_price).permit(:event_id, :artist_id, :place_id, :price_id, :custom_name, :custom_description, :cost, :price_from)
     end
 end
