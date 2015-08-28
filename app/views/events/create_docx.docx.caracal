@@ -42,15 +42,19 @@ end
 
 
 
+
 P11 = Caracal::Core::Models::TableCellModel.new do
   p
   p 'Ваш личный агент:'
   p
 end
 
+
+curator_name =  '' + params[:event][:name]
+
 P12 = Caracal::Core::Models::TableCellModel.new do
   p
-  p 'Алексей'
+  p curator_name
   p
 end
 
@@ -90,6 +94,8 @@ P74 = Caracal::Core::Models::TableCellModel.new do
   p 'alnoroid@gmail.com'
 end
 
+
+
 row1 = [P11,P12,P13,P14]
 row2 = ['Дата проведения:','28 августа','','']
 row3 = ['Место проведения','Москва','','']
@@ -120,6 +126,9 @@ c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, lef
     cell_style cells, size: 18, margins: { top: 50, bottom: 0, left: 100, right: 0 }
   end
 end
+
+
+
 c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
   table [[P12,P13,P14],['28 августа','',''],['Москва','',''],['До 20 человек','',''],['Сбор гостей с ХХ до ХХ','',''],['23:00','',''],[P72,P73, P74]]  do
   border_horizontal do

@@ -206,12 +206,12 @@
             //$('#event-price')[0].selectize.setValue($(".selectize-dropdown-content div:nth-child(2)").attr("data-value"));
 };
         $('#event_price_table').on('cocoon:after-insert', function(e, insertedItem) {
-            insertedItem.find('.priceid').val($(".selectize-dropdown-content .selected").attr('data-value').trim());
+            insertedItem.find('.priceid').val($("select#event-price>option").val());
             insertedItem.find('.name').val($(".selectize-dropdown-content .selected .title").text().trim());
             insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
-            var imagelink =
-            insertedItem.find('img .image').attr("src",'/assets/' + $(".selectize-dropdown-content .selected .image").text().trim().replace("images/",""));
-            
+
+            insertedItem.find('.image').attr("src",'/assets/' + $(".selectize-dropdown-content .selected .image").text().trim().replace("images/",""));
+
             insertedItem.find('.price1').val($(".selectize-dropdown-content .selected .price1").text().trim());
             insertedItem.find('.count').val("1");
         });
