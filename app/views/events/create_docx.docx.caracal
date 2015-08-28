@@ -1,0 +1,219 @@
+docx.page_margins do
+  left    320     # sets the left margin. units in twips.
+  right   320     # sets the right margin. units in twips.
+  top     720    # sets the top margin. units in twips.
+  bottom  720    # sets the bottom margin. units in twips.
+end
+
+docx.img image_url('http://31.31.192.117/IPmodx/images/sitemain/logo-main.png'), width: 100, height: 106, align: :center
+docx.style do
+    id 'Custom1'
+    name 'Custom1'
+    font 'Ariel'
+    size 24
+    align :center
+    color '948A54'
+end
+docx.style do
+    id 'Custom2'
+    name 'Custom2'
+    font 'Times New Roman'
+    size 30
+    align :center
+    bold true
+    italic true
+    underline true
+end
+docx.style do
+    id 'Custom3'
+    name 'Custom3'
+    font 'Times New Roman'
+    size 22
+    align :both
+end
+docx.p 'ГРУППА КОМПАНИЙ «ИДЕАЛЬНЫЙ ПРАЗДНИК»', style: 'Custom1', bold: true
+docx.p '117452, г.Москва, Балаклавский проспект, дом 28-Б, строение 1', style: 'Custom1', italic: true
+docx.p 'тел. (495) 632-01-68 (многоканальный), http://www.idealprazdnik.ru, info@idealprazdnik.ru', style: 'Custom1', italic: true
+docx.p 'Коммерческое предложение по организации события', align: :center, bold: true, size: 33
+docx.p '«' + params[:event][:name] + '»', align: :center, italic: true, bold: true, size: 30
+2.times do
+  docx.p
+end
+
+
+
+P11 = Caracal::Core::Models::TableCellModel.new do
+  p
+  p 'Ваш личный агент:'
+  p
+end
+
+P12 = Caracal::Core::Models::TableCellModel.new do
+  p
+  p 'Алексей'
+  p
+end
+
+P13 = Caracal::Core::Models::TableCellModel.new do
+  p 'Телефон'
+  p
+  p 'E-mail'
+end
+
+P14 = Caracal::Core::Models::TableCellModel.new do
+  p '8-905-501-0811'
+  p
+  p 'alnoroid@gmail.com'
+end
+
+P71 = Caracal::Core::Models::TableCellModel.new do
+  p
+  p 'Заказчик:'
+  p
+end
+
+P72 = Caracal::Core::Models::TableCellModel.new do
+  p
+  p 'Татьяна'
+  p
+end
+
+P73 = Caracal::Core::Models::TableCellModel.new do
+  p 'Телефон'
+  p
+  p 'E-mail'
+end
+
+P74 = Caracal::Core::Models::TableCellModel.new do
+  p '8-905-501-0811'
+  p
+  p 'alnoroid@gmail.com'
+end
+
+row1 = [P11,P12,P13,P14]
+row2 = ['Дата проведения:','28 августа','','']
+row3 = ['Место проведения','Москва','','']
+row4 = ['Кол-во гостей:','До 20 человек','','']
+row5 = ['Начало:','Сбор гостей с ХХ до ХХ','','']
+row6 = ['Финал:','23:00','','']
+row7 = [P71,P72,P73, P74]
+
+
+c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
+  table [[P11],['Дата проведения:'],['Место проведения:'],['Кол-во гостей:'],['Начало:'],['Финал:'],[P71]] do
+    border_top do
+        color   '000000'
+        line    :single
+        size    1
+        spacing 0
+    end
+
+
+
+    border_horizontal do
+              color   '000000'
+              line    :single
+              size    1
+              spacing 0
+    end
+    cell_style cols[0], italic: true
+    cell_style cells, size: 18, margins: { top: 50, bottom: 0, left: 100, right: 0 }
+  end
+end
+c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
+  table [[P12,P13,P14],['28 августа','',''],['Москва','',''],['До 20 человек','',''],['Сбор гостей с ХХ до ХХ','',''],['23:00','',''],[P72,P73, P74]]  do
+  border_horizontal do
+                color   '000000'
+                line    :single
+                size    1
+                spacing 0
+      end
+      border_vertical do
+                      color   '000000'
+                      line    :single
+                      size    1
+                      spacing 0
+            end
+
+        cell_style cols[1], italic: true, align: :right
+        cell_style cells, size: 18, margins: { top: 50, bottom: 0, left: 100, right: 100 }
+    end
+end
+
+docx.table [[c1,c2]] do
+  border_size    4          # sets the border width. defaults to 0. units in twips.
+  border_spacing 0
+border_top do
+        color   '000000'
+        line    :single
+        size    1
+        spacing 0
+    end
+    border_bottom do
+          color   '000000'
+          line    :single
+          size    1
+          spacing 0
+    end
+    border_left do
+              color   '000000'
+              line    :single
+              size    1
+              spacing 0
+    end
+    border_right do
+            color   '000000'
+            line    :single
+            size    1
+            spacing 0
+    end
+    border_horizontal do
+              color   '000000'
+              line    :single
+              size    1
+              spacing 0
+    end
+    cell_style cols[0], width: 1900
+end
+docx.page
+docx.p 'Краткое резюме',style: 'Custom2'
+docx.p 'группы компаний «Идеальный праздник»',style: 'Custom2'
+docx.p '	Основной задачей группы компаний «Идеальный Праздник» является помощь в организации профессиональных соревнований: церемония открытия, церемония закрытия, награждение, обеспечение гармоничного перехода от профессиональной части к элементам шоу.',style: 'Custom3'
+docx.p '	Организация праздников: 	организация корпоративных праздников или вечеринки, организация спортивных турниров, организация спортивных праздников, так же, являются неотъемлемой частью деятельности группы компаний. Большой опыт приобретён во время организации частных событий: свадьба, день рождения, юбилей, выпускной бал, детский праздник.',style: 'Custom3'
+docx.p '	Техническое обеспечение мероприятий: аренда звука и света, а именно, прокат звукоусилительной райдерной техники и светотехнического райдерного оборудования позволяет обеспечивать техническую часть шоу на любой площадке. Аренда видео оборудования и специальных эффектов помогает реализовать более сложные задачи по техническому обеспечению проводимых мероприятий.',style: 'Custom3'
+docx.p '	Комбинированное оформление пространства (аэродизайн, драпировка, флористика) всегда полезно при организации мероприятий любого уровня и поэтому, в состав группы компаний вошли профессиональные оформители.',style: 'Custom3'
+docx.p '	Аренда спортивного инвентаря и аренда аттракционов является самостоятельным направлением, без которого группа компаний «Идеальный праздник» не являлась бы предприятием полного цикла.',style: 'Custom3'
+docx.p '	На сегодняшний день группа компаний развивает четыре основных направления своей деятельности:',style: 'Custom3'
+docx.ul do
+  li do
+   text 'Прокат спортивного и развлекательного оборудования;',font: 'Times New Roman',size: 22
+   end
+  li do
+  text 'Эстрадно – техническое обеспечение мероприятий;',font: 'Times New Roman',size: 22
+  end
+  li do
+   text 'Комбинированное оформление событий;',font: 'Times New Roman',size: 22
+  end
+  li do
+  text 'Административно – творческие услуги;',font: 'Times New Roman',size: 22
+  end
+end
+docx.p '	За годы плодотворной работы наши специалисты организовали и провели церемонии открытия - закрытия Международного турнира по хоккею на Кубок «Спартака», осуществили многократную помощь в подготовке Международного фестиваля студентов «Фестос», обеспечили административно-техническую поддержку Чемпионата мира, Европы и России по каратэ, провели международные турниры по «Ушу Саньда», принимали участие в подготовке и проведении дней городов Москвы, Нижнего Новгорода, Самары, Люберцы, Сергиева Посада, презентовали многочисленные рестораны и магазины Москвы.',style: 'Custom3'
+docx.p '	Среди наших клиентов – «ИНКОМ – недвижимость», Мебельная корпорация «Соло», сеть магазинов «Паркет Холл», Компания «Комус», сеть ресторанов «РосИнтер», «ВНЕШТОРГБАНК», «ИКЕА», Вернисаж «Измайлово», «РосТелеком», «ГРАТ ВЕСТ», Счётная палата РФ, Центральная базовая Таможня РФ, «ТатНефть», «КАМАЗ – МАСТЕР», Сад «Эрмитаж», компания «Владимира Довганя», «KNAUF», официальные дилеры Ауди и BMW, «Yamaha», Администрации Муниципалитетов и округов Москвы, Администрация Нижнего Новгорода, и многие др.',style: 'Custom3'
+docx.p '	В заключение, следует отметить, что за период существования фирм, входящих в группу компаний «Идеальный праздник», сложилась уникальная база артистов, партнеров, а так же наработки в области PR-технологий.',style: 'Custom3'
+docx.p '	Самое главное отличие от подобных структур заключается в том, что группа компаний развивает сразу несколько направлений. А это, в свою очередь, позволяет нашим клиентам заказывать услуги пакетом, что, естественно, влечёт за собой снижение расходов на задуманное мероприятие.',style: 'Custom3'
+docx.page
+docx.p 'Смета проведения события', align: :center, bold: true, size: 33
+
+
+
+docx.table [['Фото','Статья расходов','Пояснение','Цена (руб.)','Кол-во','Итого (руб.)'],] do
+  border_size    10          # sets the border width. defaults to 0. units in twips.
+  cell_style rows[0], bold: true, align: :center
+  cell_style cols[0], width: 1500
+  cell_style cols[1], width: 1500
+  cell_style cols[3], width: 1200
+  cell_style cols[4], width: 1000
+  cell_style cols[5], width: 1200
+end
+

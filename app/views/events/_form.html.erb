@@ -24,17 +24,21 @@
       <%= f.text_field :place %>
     </label>
   </div>
-  <div class="large-3 columns">
+  <div class="large-2 columns">
     <label>Тип места
       <%= f.select :place_type, ['помещение','улица','улица и помещение'],{:include_blank => true} %>
     </label>
   </div>
-  <div class="large-3 columns">
+  <div class="large-2 columns">
     <label>Тип мероприятия
       <%= f.select :event_type, ['частное','техническое','спорт','свадьба','массовое','корпоратив'],{:include_blank => true} %>
     </label>
   </div>
-
+  <div class="large-2 columns">
+    <label>Количество гостей
+      <%= f.text_field :guests %>
+    </label>
+  </div>
 </div>
     <div class="row">
       <div class="large-4 columns">
@@ -104,6 +108,12 @@
 
         <%= smart_listing_render :prices %>
         <%= link_to_add_association 'Добавить', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand",js:true %>
+        <br />
+        <%= f.submit "Создать",id:"createnew", class:"button expand" %>
+        <br />
+        <%= f.submit "В ворд",id:"toword",  class:"button expand" %>
+        <br />
+        <%= link_to "Назад", events_path,class:"button expand" %>
       </div>
       <div class="large-10 columns">
         <table class="showtable">
@@ -125,11 +135,7 @@
         </table>
       </div>
     </div>
-    <div class="actions row">
-      <%= link_to "Назад", events_path,class:"button" %>
-      <%= f.submit "Создать", class:"button" %>
-      
-    </div>
+
 <% end %>
 
 
@@ -200,11 +206,12 @@
             //$('#event-price')[0].selectize.setValue($(".selectize-dropdown-content div:nth-child(2)").attr("data-value"));
 };
         $('#event_price_table').on('cocoon:after-insert', function(e, insertedItem) {
+            insertedItem.find('.priceid').val($(".selectize-dropdown-content .selected").attr('data-value').trim());
             insertedItem.find('.name').val($(".selectize-dropdown-content .selected .title").text().trim());
             insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
             var imagelink =
-            insertedItem.find('.image').attr("src",'/assets/' + $(".selectize-dropdown-content .selected .image").text().trim().replace("images/",""));
-
+            insertedItem.find('img .image').attr("src",'/assets/' + $(".selectize-dropdown-content .selected .image").text().trim().replace("images/",""));
+            
             insertedItem.find('.price1').val($(".selectize-dropdown-content .selected .price1").text().trim());
             insertedItem.find('.count').val("1");
         });
@@ -215,5 +222,14 @@
 
         eventpriceselectize();
         //Грязный хак для того, чтобы всё было красиво
+        $(".smart-listing-controls").prependTo("#prices_form");
+
+        $( "#toword" ).on( "click", function() {
+            $('#new_event').attr('action','/generatedocx');
+        });
+        $( "#createnew").on( "click", function() {
+            $('#new_event').attr('action','/events');
+        });
+
         $(".smart-listing-controls").prependTo("#prices_form");
     </script>

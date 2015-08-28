@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   include SmartListing::Helper::ControllerExtensions
   helper SmartListing::Helper
+
   # GET /events
   # GET /events.json
   def index
@@ -28,6 +29,17 @@ class EventsController < ApplicationController
 
   # GET /events/1
   # GET /events/1.json
+
+  def create_docx
+
+
+
+      respond_to do |format|
+        format.docx { headers["Content-Disposition"] = "attachment; filename=\"event" + DateTime.now.to_formatted_s(:number) + ".docx\"" }
+
+    end
+  end
+
   def show
     #@prices = Price.find_by("id = ?", params[:])
   end
@@ -47,6 +59,8 @@ class EventsController < ApplicationController
 
 
     @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {title: "asc"}
+
+
     #@event.event_prices.build
     #@prices = Price.where("price_category_id = ?", PriceCategory.first.id)
     #@prices = Price.
@@ -67,7 +81,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-
     @event = Event.new(event_params)
 
     respond_to do |format|
@@ -115,7 +128,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:price_category,:price_category_id, :name, :place, :place_type, :event_type, :date_start, :date_finish, :date_load, :greeter, :description,:client_id, :condition, event_curator_users_attributes: [:id,:user_id,:event_id,:custom], client_attributes: [:name, :phone, :email, :notes], event_prices_attributes: [:id, :custom_name, :custom_description, :price, :count, :_destroy])
+      params.require(:event).permit(:price_category,:price_category_id, :name, :place, :place_type, :event_type, :date_start, :date_finish, :date_load, :greeter, :description,:client_id, :condition,:guests, event_curator_users_attributes: [:id,:user_id,:event_id,:custom], client_attributes: [:name, :phone, :email, :notes], event_prices_attributes: [:id, :price_id, :custom_name, :custom_description, :price, :count, :_destroy])
       #params.require(:event).permit(client_attributes: [:id, :name, :phone, :email, :notes])
       #params.require(:event).permit!
     end

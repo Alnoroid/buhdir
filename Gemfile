@@ -69,3 +69,9 @@ gem "selectize-rails"
 
 #Для сложных форм
 gem "cocoon"
+
+#Для word
+gem 'caracal-rails'
+
+#Потому что Webbricks тупой
+gem "thin"
