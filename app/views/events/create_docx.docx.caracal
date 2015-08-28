@@ -49,12 +49,11 @@ P11 = Caracal::Core::Models::TableCellModel.new do
   p
 end
 
-
-curator_name =  '' + params[:event][:name]
+x1 = '' + @user.name
 
 P12 = Caracal::Core::Models::TableCellModel.new do
   p
-  p curator_name
+  p x1
   p
 end
 
@@ -64,10 +63,13 @@ P13 = Caracal::Core::Models::TableCellModel.new do
   p 'E-mail'
 end
 
+x1 = @user.phone + ''
+x2 = @user.email + ''
+
 P14 = Caracal::Core::Models::TableCellModel.new do
-  p '8-905-501-0811'
+  p x1
   p
-  p 'alnoroid@gmail.com'
+  p x2
 end
 
 P71 = Caracal::Core::Models::TableCellModel.new do
@@ -76,11 +78,15 @@ P71 = Caracal::Core::Models::TableCellModel.new do
   p
 end
 
+x1 = params[:event][:client_attributes][:name] + ''
+
 P72 = Caracal::Core::Models::TableCellModel.new do
   p
-  p 'Татьяна'
+  p x1
   p
 end
+
+
 
 P73 = Caracal::Core::Models::TableCellModel.new do
   p 'Телефон'
@@ -88,22 +94,14 @@ P73 = Caracal::Core::Models::TableCellModel.new do
   p 'E-mail'
 end
 
+x1 = params[:event][:client_attributes][:phone] + ''
+x2 = params[:event][:client_attributes][:email] + ''
+
 P74 = Caracal::Core::Models::TableCellModel.new do
-  p '8-905-501-0811'
+  p x1
   p
-  p 'alnoroid@gmail.com'
+  p x2
 end
-
-
-
-row1 = [P11,P12,P13,P14]
-row2 = ['Дата проведения:','28 августа','','']
-row3 = ['Место проведения','Москва','','']
-row4 = ['Кол-во гостей:','До 20 человек','','']
-row5 = ['Начало:','Сбор гостей с ХХ до ХХ','','']
-row6 = ['Финал:','23:00','','']
-row7 = [P71,P72,P73, P74]
-
 
 c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
   table [[P11],['Дата проведения:'],['Место проведения:'],['Кол-во гостей:'],['Начало:'],['Финал:'],[P71]] do
@@ -113,9 +111,6 @@ c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, lef
         size    1
         spacing 0
     end
-
-
-
     border_horizontal do
               color   '000000'
               line    :single
@@ -128,9 +123,15 @@ c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, lef
 end
 
 
+    x1 = Date.parse(params[:event][:date_start]).strftime("%d.%m")
+    x2 = params[:event][:place]
+    x3 = params[:event][:guests]
+    x4 = Time.parse(params[:event][:date_start]).strftime("%H:%M")
+    x5 = (x4.to_time - 1.hours).strftime("%H:%M")
+    x6 = DateTime.parse(params[:event][:date_finish]).strftime("%H:%M")
 
 c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
-  table [[P12,P13,P14],['28 августа','',''],['Москва','',''],['До 20 человек','',''],['Сбор гостей с ХХ до ХХ','',''],['23:00','',''],[P72,P73, P74]]  do
+  table [[P12,P13,P14],[x1,'',''],[x2,'',''],[x3,'',''],['Сбор гостей с '+ x5 +' до ' + x4,'',''],[x6,'',''],[P72,P73, P74]]  do
   border_horizontal do
                 color   '000000'
                 line    :single
@@ -214,9 +215,9 @@ docx.p '	Самое главное отличие от подобных стру
 docx.page
 docx.p 'Смета проведения события', align: :center, bold: true, size: 33
 
+data = params[:event][:event_prices_attributes].values
 
-
-docx.table [['Фото','Статья расходов','Пояснение','Цена (руб.)','Кол-во','Итого (руб.)'],] do
+docx.table data do
   border_size    10          # sets the border width. defaults to 0. units in twips.
   cell_style rows[0], bold: true, align: :center
   cell_style cols[0], width: 1500
@@ -225,4 +226,3 @@ docx.table [['Фото','Статья расходов','Пояснение','Ц
   cell_style cols[4], width: 1000
   cell_style cols[5], width: 1200
 end
-

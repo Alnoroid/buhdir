@@ -34,6 +34,13 @@ class EventsController < ApplicationController
 
 
 
+
+    params[:event][:event_curator_users_attributes].values.each do |curator|
+      @usernameid = curator[:user_id]
+    end
+    @user = User.find(@usernameid)
+
+
       respond_to do |format|
         format.docx { headers["Content-Disposition"] = "attachment; filename=\"event" + DateTime.now.to_formatted_s(:number) + ".docx\"" }
 
