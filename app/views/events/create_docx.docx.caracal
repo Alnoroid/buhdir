@@ -6,6 +6,7 @@ docx.page_margins do
 end
 
 docx.img image_url('http://31.31.192.117/IPmodx/images/sitemain/logo-main.png'), width: 100, height: 106, align: :center
+
 docx.style do
     id 'Custom1'
     name 'Custom1'
@@ -39,9 +40,6 @@ docx.p '«' + params[:event][:name] + '»', align: :center, italic: true, bold: 
 2.times do
   docx.p
 end
-
-
-
 
 P11 = Caracal::Core::Models::TableCellModel.new do
   p
@@ -122,13 +120,27 @@ c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, lef
   end
 end
 
+    if params[:event][:date_start].to_s.blank? then
+      x1 = ''
+      x4 = ''
+      x5 = ''
+    else
+      x1 = Date.parse(params[:event][:date_start]).strftime("%d.%m")
+      x4 = Time.parse(params[:event][:date_start]).strftime("%H:%M")
+      x5 = (x4.to_time - 1.hours).strftime("%H:%M")
+    end
 
-    x1 = Date.parse(params[:event][:date_start]).strftime("%d.%m")
-    x2 = params[:event][:place]
-    x3 = params[:event][:guests]
-    x4 = Time.parse(params[:event][:date_start]).strftime("%H:%M")
-    x5 = (x4.to_time - 1.hours).strftime("%H:%M")
-    x6 = DateTime.parse(params[:event][:date_finish]).strftime("%H:%M")
+x2 = params[:event][:place]
+x3 = params[:event][:guests]
+
+    if params[:event][:date_finish].to_s.blank? then
+      x6 = ''
+    else
+      x6 = DateTime.parse(params[:event][:date_finish]).strftime("%H:%M")
+    end
+
+
+
 
 c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
   table [[P12,P13,P14],[x1,'',''],[x2,'',''],[x3,'',''],['Сбор гостей с '+ x5 +' до ' + x4,'',''],[x6,'',''],[P72,P73, P74]]  do
@@ -143,7 +155,7 @@ c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, lef
                       line    :single
                       size    1
                       spacing 0
-            end
+      end
 
         cell_style cols[1], italic: true, align: :right
         cell_style cells, size: 18, margins: { top: 50, bottom: 0, left: 100, right: 100 }
@@ -212,12 +224,32 @@ docx.p '	За годы плодотворной работы наши специ
 docx.p '	Среди наших клиентов – «ИНКОМ – недвижимость», Мебельная корпорация «Соло», сеть магазинов «Паркет Холл», Компания «Комус», сеть ресторанов «РосИнтер», «ВНЕШТОРГБАНК», «ИКЕА», Вернисаж «Измайлово», «РосТелеком», «ГРАТ ВЕСТ», Счётная палата РФ, Центральная базовая Таможня РФ, «ТатНефть», «КАМАЗ – МАСТЕР», Сад «Эрмитаж», компания «Владимира Довганя», «KNAUF», официальные дилеры Ауди и BMW, «Yamaha», Администрации Муниципалитетов и округов Москвы, Администрация Нижнего Новгорода, и многие др.',style: 'Custom3'
 docx.p '	В заключение, следует отметить, что за период существования фирм, входящих в группу компаний «Идеальный праздник», сложилась уникальная база артистов, партнеров, а так же наработки в области PR-технологий.',style: 'Custom3'
 docx.p '	Самое главное отличие от подобных структур заключается в том, что группа компаний развивает сразу несколько направлений. А это, в свою очередь, позволяет нашим клиентам заказывать услуги пакетом, что, естественно, влечёт за собой снижение расходов на задуманное мероприятие.',style: 'Custom3'
+
+if !params[:event][:event_prices_attributes].nil?
 docx.page
 docx.p 'Смета проведения события', align: :center, bold: true, size: 33
 
-data = params[:event][:event_prices_attributes].values
+@a = Array.new
+@b = Array.new
+@a.push('Фото','Статья расходов','Пояснение','Цена (руб.)','Кол-во','Итого (руб.)')
+@b.push(@a)
+@a = Array.new
+params[:event][:event_prices_attributes].values.each do |item|
+  imageforprice = Caracal::Core::Models::TableCellModel.new do
+    img 'http://31.31.192.117/IPmodx/' + item[:prices][:image_file_name], width: 60, height: 45
+  end
 
-docx.table data do
+  @a.push(imageforprice)
+  @a.push(item[:custom_name])
+  @a.push(item[:custom_description])
+  @a.push(item[:cost])
+  @a.push(item[:count])
+  @a.push(item[:cost].to_i * item[:count].to_i)
+  @b.push(@a)
+  @a = Array.new
+end
+
+docx.table @b do
   border_size    10          # sets the border width. defaults to 0. units in twips.
   cell_style rows[0], bold: true, align: :center
   cell_style cols[0], width: 1500
@@ -225,4 +257,5 @@ docx.table data do
   cell_style cols[3], width: 1200
   cell_style cols[4], width: 1000
   cell_style cols[5], width: 1200
+end
 end

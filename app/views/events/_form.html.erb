@@ -211,7 +211,7 @@
             insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
 
             insertedItem.find('.image').attr("src",'/assets/' + $(".selectize-dropdown-content .selected .image").text().trim().replace("images/",""));
-
+            insertedItem.find('.imageurl').val($(".selectize-dropdown-content .selected .image").text().trim());
             insertedItem.find('.price1').val($(".selectize-dropdown-content .selected .price1").text().trim());
             insertedItem.find('.count').val("1");
         });

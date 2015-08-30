@@ -31,19 +31,13 @@ class EventsController < ApplicationController
   # GET /events/1.json
 
   def create_docx
-
-
-
-
     params[:event][:event_curator_users_attributes].values.each do |curator|
       @usernameid = curator[:user_id]
     end
     @user = User.find(@usernameid)
 
-
       respond_to do |format|
         format.docx { headers["Content-Disposition"] = "attachment; filename=\"event" + DateTime.now.to_formatted_s(:number) + ".docx\"" }
-
     end
   end
 
@@ -56,7 +50,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.event_curator_users.build
     @event.build_client
-
+    #@price = Price.all
     #events_new_scope = Price.catsearch(params[:price_category_filter])
     if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
       events_new_scope = Price.catsearch(params[:price_category_filter])
