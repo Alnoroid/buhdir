@@ -4,4 +4,5 @@ class EventPrice < ActiveRecord::Base
   #has_one :artist
   has_one :price
   #has_one :place
+  accepts_nested_attributes_for :price
 end
