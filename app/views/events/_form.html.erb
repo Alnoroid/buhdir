@@ -109,7 +109,7 @@
     <%= smart_listing_render :prices %>
   </div>
   <div class="large-2 columns">
-    <%= link_to_add_association 'Добавить', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand",js:true %>
+    <%= link_to_add_association 'Добавить статью', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand",js:true %>
   </div>
   </div>
     <div class="row">
@@ -134,11 +134,13 @@
       </div>
     </div>
 <div class="row">
-    <div class="large-2 columns">
-      <%= f.submit "Создать",id:"createnew", class:"button expand" %>
-      <br />
-      <%= f.submit "В ворд",id:"toword",  class:"button expand" %>
-      <br />
+    <div class="large-4 columns">
+      <%= f.submit "Создать предложение",id:"toword",  class:"button expand" %>
+      </div>
+      <div class="large-4 columns">
+      <%= f.submit "Создать мероприятие",id:"createnew", class:"button expand" %>
+      </div>
+  <div class="large-4 columns">
       <%= link_to "Назад", events_path,class:"button expand" %>
     </div>
 </div>
