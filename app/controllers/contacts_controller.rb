@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action :role_required
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   # GET /contacts

@@ -1,4 +1,5 @@
 class PricesController < ApplicationController
+  before_action :role_required
   before_action :set_price, only: [:show, :edit, :update, :destroy]
   include SmartListing::Helper::ControllerExtensions
   helper SmartListing::Helper

@@ -32,17 +32,36 @@
     </ul>
     <section class="top-bar-section">
       <ul class="left">
-        <li class=""><%= link_to '<i class="fi-torso large"></i>Пользователи'.html_safe, users_path %></li>
-        <li class=""><%= link_to '<i class="fi-torsos large"></i>Картотека'.html_safe, contacts_path %></li>
-        <li class=""><%= link_to '<i class="fi-torsos large"></i>Кленты'.html_safe, clients_path %></li>
-        <li class=""><%= link_to '<i class="fi-torsos large"></i>Мероприятия'.html_safe, events_path %></li>
-        <li class=""><a href="#"><i class="fi-home large"></i>Складская</a></li>
-        <li class=""><%= link_to '<i class="fi-price-tag large"></i>Прайс'.html_safe, prices_path %></li>
-        <li class=""><a href="#"><i class="fi-dollar large"></i>Финансы</a></li>
-        <li class=""><a href="#"><i class="fi-info large"></i>Статистика</a></li>
+
+        <% if current_user %>
+          <% if current_user.has_role?(:users, :index) %>
+            <li class=""><%= link_to '<i class="fi-torso large"></i>Пользователи'.html_safe, users_path %></li>
+          <% end %>
+          <% if current_user.has_role?(:contacts, :index) %>
+            <li class=""><%= link_to '<i class="fi-torsos large"></i>Картотека'.html_safe, contacts_path %></li>
+          <% end %>
+          <% if current_user.has_role?(:clients, :index) %>
+            <li class=""><%= link_to '<i class="fi-torsos large"></i>Кленты'.html_safe, clients_path %></li>
+          <% end %>
+          <% if current_user.has_role?(:events, :index) %>
+            <li class=""><%= link_to '<i class="fi-torsos large"></i>Мероприятия'.html_safe, events_path %></li>
+          <% end %>
+          <% if current_user.has_role?(:stocks, :index) %>
+            <li class=""><a href="#"><i class="fi-home large"></i>Складская</a></li>
+          <% end %>
+          <% if current_user.has_role?(:prices, :index) %>
+            <li class=""><%= link_to '<i class="fi-price-tag large"></i>Прайс'.html_safe, prices_path %></li>
+          <% end %>
+          <% if current_user.has_role?(:finances, :index) %>
+            <li class=""><a href="#"><i class="fi-dollar large"></i>Финансы</a></li>
+          <% end %>
+          <% if current_user.has_role?(:statistics, :index) %>
+            <li class=""><a href="#"><i class="fi-info large"></i>Статистика</a></li>
+          <% end %>
+        <% end %>
       </ul>
       <ul class="right">
-        <li><%= link_to "Здравствуйте #{current_user.name}" , edit_user_path(current_user.id) %></li>
+        <li><a href="#">Здравствуйте <%= current_user.name %></a></li>
         <li><%= link_to "Выход", :logout %></li>
       </ul>
     </section>

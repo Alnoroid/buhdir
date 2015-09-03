@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :role_required
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   include SmartListing::Helper::ControllerExtensions
   helper SmartListing::Helper
