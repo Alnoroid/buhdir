@@ -72,6 +72,7 @@ gem "cocoon"
 
 #Для word
 gem 'caracal-rails'
+gem 'htmltoword'
 
 #Потому что Webbricks тупой
 gem "thin"

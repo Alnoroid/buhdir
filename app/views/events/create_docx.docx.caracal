@@ -5,7 +5,7 @@ docx.page_margins do
   bottom  720    # sets the bottom margin. units in twips.
 end
 
-docx.img image_url('http://31.31.192.117/IPmodx/images/sitemain/logo-main.png'), width: 100, height: 106, align: :center
+docx.img image_url('http://31.31.192.117/images/sitemain/logo-main.png'), width: 100, height: 106, align: :center
 
 docx.style do
     id 'Custom1'
@@ -236,7 +236,7 @@ docx.p 'Смета проведения события', align: :center, bold: t
 @a = Array.new
 params[:event][:event_prices_attributes].values.each do |item|
   imageforprice = Caracal::Core::Models::TableCellModel.new do
-    img 'http://31.31.192.117/IPmodx/' + item[:prices][:image_file_name], width: 60, height: 45
+    img 'http://31.31.192.117/images/' + item[:prices][:image_file_name], width: 60, height: 45
   end
 
   @a.push(imageforprice)

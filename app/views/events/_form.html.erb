@@ -102,20 +102,18 @@
         </label>
       </div>
     </div>
-
+<div class="row">
+  <div class="large-2 columns" id="prices_form">
+    </div>
+  <div class="large-8 columns">
+    <%= smart_listing_render :prices %>
+  </div>
+  <div class="large-2 columns">
+    <%= link_to_add_association 'Добавить', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand",js:true %>
+  </div>
+  </div>
     <div class="row">
-      <div class="large-2 columns" id="prices_form">
-
-        <%= smart_listing_render :prices %>
-        <%= link_to_add_association 'Добавить', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand",js:true %>
-        <br />
-        <%= f.submit "Создать",id:"createnew", class:"button expand" %>
-        <br />
-        <%= f.submit "В ворд",id:"toword",  class:"button expand" %>
-        <br />
-        <%= link_to "Назад", events_path,class:"button expand" %>
-      </div>
-      <div class="large-10 columns">
+      <div class="large-12 columns">
         <table class="showtable">
           <thead>
           <tr>
@@ -135,7 +133,15 @@
         </table>
       </div>
     </div>
-
+<div class="row">
+    <div class="large-2 columns">
+      <%= f.submit "Создать",id:"createnew", class:"button expand" %>
+      <br />
+      <%= f.submit "В ворд",id:"toword",  class:"button expand" %>
+      <br />
+      <%= link_to "Назад", events_path,class:"button expand" %>
+    </div>
+</div>
 <% end %>
 
 
@@ -145,7 +151,7 @@
         $('.date_picker').fdatetimepicker({
             language: 'ru',
             weekStart: 1,
-            minuteStep: 15,
+            minuteStep: 30,
             autoclose: true,
             format: "dd.mm.yyyy hh:ii"
         });
@@ -202,16 +208,24 @@
             }
         });
 
-            //$('#event-price')[0].selectize.setValue(1);
+            $('#event-price')[0].selectize.setValue(1);
             //$('#event-price')[0].selectize.setValue($(".selectize-dropdown-content div:nth-child(2)").attr("data-value"));
 };
         $('#event_price_table').on('cocoon:after-insert', function(e, insertedItem) {
             insertedItem.find('.priceid').val($("select#event-price>option").val());
             insertedItem.find('.name').val($(".selectize-dropdown-content .selected .title").text().trim());
             insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
-
-            insertedItem.find('.image').attr("src",'/assets/' + $(".selectize-dropdown-content .selected .image").text().trim().replace("images/",""));
-            insertedItem.find('.imageurl').val($(".selectize-dropdown-content .selected .image").text().trim());
+            var imageitem = $(".selectize-dropdown-content .selected .image").text().trim().replace("images/","");
+            if (imageitem == 'articles/logo1.png') {
+                insertedItem.find('.image').attr("src",'/assets/price/logo1.png');
+                insertedItem.find('.image').attr("src",'/assets/price/logo1.png');
+                insertedItem.find('.imageurl').val('price/logo1.png');
+            }
+            else
+            {
+                insertedItem.find('.image').attr("src",'/assets/' + imageitem);
+                insertedItem.find('.imageurl').val(imageitem);
+            }
             insertedItem.find('.price1').val($(".selectize-dropdown-content .selected .price1").text().trim());
             insertedItem.find('.count').val("1");
         });
@@ -230,6 +244,4 @@
         $( "#createnew").on( "click", function() {
             $('#new_event').attr('action','/events');
         });
-
-        $(".smart-listing-controls").prependTo("#prices_form");
     </script>
