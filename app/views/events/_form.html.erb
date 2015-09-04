@@ -106,7 +106,7 @@
     <%= smart_listing_render :prices %>
   </div>
   <div class="large-2 columns">
-    <%= link_to_add_association 'Добавить статью', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "append", class:"button expand",js:true %>
+    <%= link_to_add_association 'Добавить статью', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "prepend", class:"button expand",js:true %>
   </div>
   </div>
     <div class="row">
@@ -238,7 +238,6 @@
             }
                 else{
              maxprice = price1
-
             }
             }
 
