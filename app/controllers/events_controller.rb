@@ -4,6 +4,17 @@ class EventsController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper SmartListing::Helper
 
+
+  def smart_list
+    if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
+      events_new_scope = Price.catsearch(params[:price_category_filter])
+    else
+      events_new_scope = Price.where("price_category_id < '11'")
+    end
+
+    @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {title: "asc"}
+
+  end
   # GET /events
   # GET /events.json
   def index
@@ -52,41 +63,16 @@ class EventsController < ApplicationController
     @event.event_curator_users.build
     @event.build_client
     @event.event_prices.build(:custom_name => 'Работа офиса по подготовке мероприятия',:custom_description => 'Вознаграждение исполнителя, а также налоги и сборы, уплачиваемые на территории РФ.',:cost => '20',:count=>'1')
-    #@price = Price.all
-    #events_new_scope = Price.catsearch(params[:price_category_filter])
-    if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
-      events_new_scope = Price.catsearch(params[:price_category_filter])
-    else
-      events_new_scope = Price.all
-    end
 
-
-    @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {title: "asc"}
-
-
-    #@event.event_prices.build
-    #@prices = Price.where("price_category_id = ?", PriceCategory.first.id)
-    #@prices = Price.
-
-    #@custom = EventCuratorUser.new
-    #@client = @event.build_client
-    #@client = Client.new
-    #@client = @event.build_client
-
-    #@event_curator_users = EventCuratorUser.new
+    smart_list
   end
 
 
   # GET /events/1/edit
   def edit
     @event.build_client
-    if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
-      events_new_scope = Price.catsearch(params[:price_category_filter])
-    else
-      events_new_scope = Price.all
-    end
 
-    @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {id: "asc"}
+    smart_list
 
   end
 
@@ -94,13 +80,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
-      events_new_scope = Price.catsearch(params[:price_category_filter])
-    else
-      events_new_scope = Price.all
-    end
-
-    @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {id: "asc"}
+    smart_list
 
     respond_to do |format|
       if @event.save
