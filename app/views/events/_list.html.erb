@@ -19,7 +19,7 @@
       <% smart_listing.collection.each do |o| %>
           <tr>
             <td><%= link_to '<i class="fi-x"></i>'.html_safe, o, method: :delete, data: { confirm: 'Уверены?' } %></td>
-            <td><%= link_to '<i class="fi-widget"></i>'.html_safe, edit_price_path(o) %></td>
+            <td><%= link_to '<i class="fi-widget"></i>'.html_safe, edit_event_path(o) %></td>
             <td><%= o.name %></td>
             <td>
               <% if o.date_start then %>
