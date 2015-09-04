@@ -51,6 +51,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.event_curator_users.build
     @event.build_client
+    @event.event_prices.build(:custom_name => 'Работа офиса по подготовке мероприятия',:custom_description => 'Вознаграждение исполнителя, а также налоги и сборы, уплачиваемые на территории РФ.',:cost => '20',:count=>'1')
     #@price = Price.all
     #events_new_scope = Price.catsearch(params[:price_category_filter])
     if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
