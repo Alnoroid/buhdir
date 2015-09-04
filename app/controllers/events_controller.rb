@@ -78,6 +78,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event.build_client
     if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
       events_new_scope = Price.catsearch(params[:price_category_filter])
     else
@@ -92,6 +93,13 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
+      events_new_scope = Price.catsearch(params[:price_category_filter])
+    else
+      events_new_scope = Price.all
+    end
+
+    @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {id: "asc"}
 
     respond_to do |format|
       if @event.save
@@ -100,6 +108,8 @@ class EventsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+        #format.html { redirect_to new_event_url, alert: @event.errors }
+
       end
     end
   end
@@ -142,7 +152,4 @@ class EventsController < ApplicationController
       #params.require(:event).permit(client_attributes: [:id, :name, :phone, :email, :notes])
       #params.require(:event).permit!
     end
-
-
-
 end

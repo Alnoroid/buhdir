@@ -6,9 +6,8 @@ class Event < ActiveRecord::Base
   has_many :event_prices
   accepts_nested_attributes_for :event_prices
 
-  belongs_to :client
+  belongs_to :client, inverse_of: :events
   accepts_nested_attributes_for :client
-
 
 
 
