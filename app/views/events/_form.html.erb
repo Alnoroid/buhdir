@@ -2,19 +2,6 @@
     <%= select_tag :price_category_filter, options_from_collection_for_select(PriceCategory.all,"id","name"),{:include_blank => "Все категории"} %>
 <% end %>
 <%= form_for @event do |f| %>
-  <% if @event.errors.any? %>
-  <div class="row">
-    <div class="large-12 columns" id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  </div>
-  <% end %>
 <div class="row">
   <div class="large-3 columns">
     <label>Наименование
@@ -75,6 +62,9 @@
             <label>Email заказчика
               <%= fa.text_field :email %>
             </label>
+            <% if fa.object.errors[:email].present? %>
+              <small class="error"><%= fa.object.errors[:email].join(", ") %></small>
+            <% end %>
           </div>
           <div class="large-3 columns">
             <label>Замечания к заказчику
