@@ -225,7 +225,24 @@
                 insertedItem.find('.image').attr("src",'/assets/' + imageitem);
                 insertedItem.find('.imageurl').val(imageitem);
             }
-            insertedItem.find('.price1').val($(".selectize-dropdown-content .selected .price1").text().trim());
+
+            price1 = parseInt($(".selectize-dropdown-content .selected .price1").text().trim())
+            price2 = parseInt($(".selectize-dropdown-content .selected .price2").text().trim())
+            if (isNaN(price2)){
+                maxprice = price1
+            }
+            else
+            {
+            if (price2 > price1){
+                maxprice = price2
+            }
+                else{
+             maxprice = price1
+
+            }
+            }
+
+            insertedItem.find('.price1').val(maxprice);
             insertedItem.find('.count').val("1");
         });
 
