@@ -101,12 +101,12 @@
     </div>
 <div class="row">
   <div class="large-2 columns" id="prices_form">
-    </div>
+  </div>
   <div class="large-8 columns">
     <%= smart_listing_render :prices %>
   </div>
   <div class="large-2 columns">
-    <%= link_to_add_association 'Добавить статью', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "prepend", class:"button expand",js:true %>
+    <%= link_to_add_association 'Добавить статью', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "prepend", class:"button expand",js:true,id:'add_price' %>
   </div>
   </div>
     <div class="row">
@@ -179,11 +179,9 @@
         function eventpriceselectize(){
         $('#event-price').selectize({
             create: true,
-            sortField: "text",
             valueField: 'id',
             labelField: 'title',
             searchField: ['title','id'],
-
             render:{
                 item: function(item, escape)
                 {
@@ -206,8 +204,10 @@
                 }
             }
         });
-
-            $('#event-price')[0].selectize.setValue(1);
+            $( "#event-price" ).change(function() {
+                $('#add_price').trigger("click");
+            });
+            //$('#event-price')[0].selectize.setValue(1);
             //$('#event-price')[0].selectize.setValue($(".selectize-dropdown-content div:nth-child(2)").attr("data-value"));
 };
         $('#event_price_table').on('cocoon:after-insert', function(e, insertedItem) {

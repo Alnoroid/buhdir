@@ -12,7 +12,7 @@ class EventsController < ApplicationController
       events_new_scope = Price.where("price_category_id < '11'")
     end
 
-    @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {title: "asc"}
+    @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {id: "asc"}
 
   end
   # GET /events
