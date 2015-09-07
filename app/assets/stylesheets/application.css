@@ -64,3 +64,8 @@ padding-top: 1px;
 .selectize-dropdown .active {
     background-color: #e7e7e7!important;
 }
+
+.nested-field td img{
+    width: 145px;
+    height: 105px;
+}

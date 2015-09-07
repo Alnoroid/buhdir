@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826100704) do
-
-  create_table "artists", force: :cascade do |t|
-    t.string   "title",             limit: 255
-    t.text     "description",       limit: 65535
-    t.string   "image",             limit: 255
-    t.integer  "price_category_id", limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-  end
+ActiveRecord::Schema.define(version: 20150907041353) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -70,14 +61,13 @@ ActiveRecord::Schema.define(version: 20150826100704) do
 
   create_table "event_prices", force: :cascade do |t|
     t.integer "event_id",           limit: 4
-    t.integer "artist_id",          limit: 4
-    t.integer "place_id",           limit: 4
     t.integer "price_id",           limit: 4
     t.string  "custom_name",        limit: 255
     t.text    "custom_description", limit: 65535
-    t.integer "cost",              limit: 4
-    t.boolean "price_from",         limit: 1
+    t.integer "cost",               limit: 4
     t.integer "count",              limit: 4
+    t.string  "image_name",         limit: 255
+    t.integer "price_category_id",  limit: 4
   end
 
   create_table "events", force: :cascade do |t|
@@ -93,17 +83,6 @@ ActiveRecord::Schema.define(version: 20150826100704) do
     t.text     "description", limit: 65535
     t.string   "condition",   limit: 255
     t.string   "guests",      limit: 255
-  end
-
-  create_table "places", force: :cascade do |t|
-    t.text     "title",             limit: 65535
-    t.text     "description",       limit: 65535
-    t.string   "phone",             limit: 255
-    t.string   "presentation",      limit: 255
-    t.string   "image",             limit: 255
-    t.integer  "price_category_id", limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
   end
 
   create_table "price_categories", force: :cascade do |t|

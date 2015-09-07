@@ -62,18 +62,14 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.event_curator_users.build
     @event.build_client
-    @event.event_prices.build(:custom_name => 'Работа офиса по подготовке мероприятия',:custom_description => 'Вознаграждение исполнителя, а также налоги и сборы, уплачиваемые на территории РФ.',:cost => '20',:count=>'1')
-
+    @event.event_prices.build(:price_id=>'438', :image_name => 'price/logo1.png', :price_category_id => '8', :custom_name => 'Работа офиса по подготовке мероприятия',:custom_description => 'Вознаграждение исполнителя, а также налоги и сборы, уплачиваемые на территории РФ.',:cost => '20',:count=>'1')
     smart_list
   end
 
 
   # GET /events/1/edit
   def edit
-    @event.build_client
-
     smart_list
-
   end
 
   # POST /events
@@ -129,7 +125,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:price_category,:price_category_id, :name, :place, :place_type, :event_type, :date_start, :date_finish, :date_load, :greeter, :description,:client_id, :condition,:guests, event_curator_users_attributes: [:id,:user_id,:event_id,:custom], client_attributes: [:name, :phone, :email, :notes], event_prices_attributes: [:id, :price_id, :custom_name, :custom_description, :cost, :count,  :_destroy,prices_attributes:[:image_file_name]])
+      params.require(:event).permit(:price_category,:price_category_id, :name, :place, :place_type, :event_type, :date_start, :date_finish, :date_load, :greeter, :description,:client_id, :condition,:guests, event_curator_users_attributes: [:id,:user_id,:event_id,:custom], client_attributes: [:name, :phone, :email, :notes], event_prices_attributes: [:id, :price_id, :custom_name, :custom_description, :cost, :count,:image_name, :price_category_id,  :_destroy,prices_attributes:[:image_file_name]])
       #params.require(:event).permit(client_attributes: [:id, :name, :phone, :email, :notes])
       #params.require(:event).permit!
     end

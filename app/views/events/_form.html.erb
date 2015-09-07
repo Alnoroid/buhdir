@@ -118,7 +118,9 @@
             <th style="width:35%;">Описание</th>
             <th style="width:10%;">Цена</th>
             <th style="width:10%;">Количество</th>
+            <th style="width:10%;">Категория</th>
             <th style="width:10%;">Удалить</th>
+            <th style="display:none" data-sort="int" data-sort-default="desc">Категория</th>
           </tr>
           </thead>
           <tbody  id="event_price_table">
@@ -141,10 +143,6 @@
     </div>
 </div>
 <% end %>
-
-
-
-
     <script>
         $('.date_picker').fdatetimepicker({
             language: 'ru',
@@ -208,6 +206,7 @@
                     (itemarray[1] ? '<span class="description" style="display:none;">' + itemarray[1] + '</span>' : "")+
                     (itemarray[3] ? '<span class="price1" style="display:none;">' + itemarray[3] + '</span>' : "")+
                     (itemarray[4] ? '<span class="price2" style="display:none;">' + itemarray[4] + '</span>' : "")+
+                    (itemarray[5] ? '<span class="category_id_table" style="display:none;">' + itemarray[5] + '</span>' : "")+
                     '</div>';
                 }
             }
@@ -228,7 +227,7 @@
             insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
             var imageitem = $(".selectize-dropdown-content .selected .image").attr("src").trim();
             insertedItem.find('.image').attr("src",imageitem);
-            insertedItem.find('.imageurl').val(imageitem);
+            insertedItem.find('.imageurl').val(imageitem.replace("/assets/",""));
 
 
             price1 = parseInt($(".selectize-dropdown-content .selected .price1").text().trim())
@@ -248,8 +247,9 @@
 
             insertedItem.find('.price1').val(maxprice);
             insertedItem.find('.count').val("1");
+            insertedItem.find('.pcategory_id').val($(".selectize-dropdown-content .selected .category_id_table").text().trim());
         });
-
+       // insertedItem.find('.priceid').val($("select#event-price>option").val());
         $( document ).ajaxComplete(function() {
             eventpriceselectize();
         });
@@ -260,6 +260,7 @@
 
         $( "#toword" ).on( "click", function() {
             $('#new_event').attr('action','/generatedocx');
+            $('#edit_event').attr('action','/generatedocx');
         });
         $( "#createnew").on( "click", function() {
             $('#new_event').attr('action','/events');

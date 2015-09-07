@@ -1,10 +1,9 @@
 <tr class="nested-field">
   <td>
-    <img src="" class="image"/>
+
+    <%= image_tag f.object.image_name, class:"image" %>
     <%= f.hidden_field :price_id, class:"priceid" %>
-    <%= f.fields_for :prices do |test| %>
-    <%= test.hidden_field :image_file_name, class:"imageurl" %>
-    <% end %>
+    <%= f.hidden_field :image_name, class:"imageurl" %>
   </td>
   <td>
     <%= f.text_field :custom_name, class:"name" %>
@@ -19,6 +18,10 @@
     <%= f.text_field :count, class:"count" %>
   </td>
   <td>
+    <%= f.collection_select(:price_category_id, PriceCategory.where("id < '11'"), :id, :name,{},{class:'pcategory_id'}) %>
+  </td>
+  <td>
   <%= link_to_remove_association "Удалить", f,wrapper_class: 'nested-field' %>
   </td>
+
 </tr>
