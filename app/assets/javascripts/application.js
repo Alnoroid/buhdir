@@ -14,7 +14,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.maskedinput.min.js
-//= require stupidtable.min.js
 //= require foundation
 //= require turbolinks
 //= require jquery.growl

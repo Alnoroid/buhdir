@@ -32,17 +32,17 @@
     <div class="row">
       <div class="large-4 columns">
         <label>Дата начала
-          <%= f.text_field :date_start,class:"date_picker" %>
+          <%= f.text_field :date_start,class:"date_picker",:value=>"#{DateTime.parse(f.object.date_start.to_s).strftime("%d.%m.%Y %H:%M") unless f.object.new_record?}" %>
         </label>
       </div>
       <div class="large-4 columns">
         <label>Дата окончания
-          <%= f.text_field :date_finish,class:"date_picker" %>
+          <%= f.text_field :date_finish,class:"date_picker",:value=>"#{DateTime.parse(f.object.date_finish.to_s).strftime("%d.%m.%Y %H:%M") unless f.object.new_record?}" %>
         </label>
       </div>
       <div class="large-4 columns">
         <label>Дата погрузки
-          <%= f.text_field :date_load,class:"date_picker" %>
+          <%= f.text_field :date_load,class:"date_picker",:value=>"#{DateTime.parse(f.object.date_load.to_s).strftime("%d.%m.%Y %H:%M") unless f.object.new_record?}" %>
         </label>
       </div>
     </div>
