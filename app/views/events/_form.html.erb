@@ -100,14 +100,13 @@
       </div>
     </div>
 <div class="row">
-  <div class="large-2 columns" id="prices_form">
+  <div class="large-4 columns" id="prices_form">
   </div>
   <div class="large-8 columns">
     <%= smart_listing_render :prices %>
+    <%= link_to_add_association 'Добавить статью', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "prepend", class:"button expand",js:true,id:'add_price',style:"display:none" %>
   </div>
-  <div class="large-2 columns">
-    <%= link_to_add_association 'Добавить статью', f, :event_prices, :"data-association-insertion-node" => "#event_price_table", :"data-association-insertion-method" => "prepend", class:"button expand",js:true,id:'add_price' %>
-  </div>
+
   </div>
     <div class="row">
       <div class="large-12 columns">
@@ -194,10 +193,19 @@
                 option: function(item,escape)
                 {
                     var itemarray = item.title.split('|');
+                    if (!itemarray[2]){
+                        itemarray[2] = '/assets/price/logo1.png';
+                        itemarray[3] = '0'
+                        itemarray[4] = '0'
+                    }
+                    if (itemarray[2].trim() == 'images/articles/logo1.png') {
+                        itemarray[2] = '/assets/price/logo1.png';
+                    }
+                    var imageitem = itemarray[2].replace("images/","/assets/");
                     return '<div>'+
+                    '<img class="image" width="50" height="38" src="' + imageitem + '"/>' +
                     (itemarray[0] ? '<span class="title">' + itemarray[0] + '</span>' : "")+
                     (itemarray[1] ? '<span class="description" style="display:none;">' + itemarray[1] + '</span>' : "")+
-                    (itemarray[2] ? '<span class="image" style="display:none;">' + itemarray[2] + '</span>' : "")+
                     (itemarray[3] ? '<span class="price1" style="display:none;">' + itemarray[3] + '</span>' : "")+
                     (itemarray[4] ? '<span class="price2" style="display:none;">' + itemarray[4] + '</span>' : "")+
                     '</div>';
@@ -205,7 +213,11 @@
             }
         });
             $( "#event-price" ).change(function() {
+                if ($( "#event-price").val() == ''){
+                }
+                else{
                 $('#add_price').trigger("click");
+                }
             });
             //$('#event-price')[0].selectize.setValue(1);
             //$('#event-price')[0].selectize.setValue($(".selectize-dropdown-content div:nth-child(2)").attr("data-value"));
@@ -214,17 +226,10 @@
             insertedItem.find('.priceid').val($("select#event-price>option").val());
             insertedItem.find('.name').val($(".selectize-dropdown-content .selected .title").text().trim());
             insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
-            var imageitem = $(".selectize-dropdown-content .selected .image").text().trim().replace("images/","");
-            if (imageitem == 'articles/logo1.png') {
-                insertedItem.find('.image').attr("src",'/assets/price/logo1.png');
-                insertedItem.find('.image').attr("src",'/assets/price/logo1.png');
-                insertedItem.find('.imageurl').val('price/logo1.png');
-            }
-            else
-            {
-                insertedItem.find('.image').attr("src",'/assets/' + imageitem);
-                insertedItem.find('.imageurl').val(imageitem);
-            }
+            var imageitem = $(".selectize-dropdown-content .selected .image").attr("src").trim();
+            insertedItem.find('.image').attr("src",imageitem);
+            insertedItem.find('.imageurl').val(imageitem);
+
 
             price1 = parseInt($(".selectize-dropdown-content .selected .price1").text().trim())
             price2 = parseInt($(".selectize-dropdown-content .selected .price2").text().trim())
