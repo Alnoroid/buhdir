@@ -36,6 +36,6 @@ production:
   reconnect: false
   database: bd-production
   pool: 5
-  username: webdev
-  password: Angron!1
+  username: root
+  password: Overconfidence!1
   host: localhost
