@@ -20,7 +20,7 @@
   </div>
   <div class="large-2 columns">
     <label>Количество гостей
-      <%= f.text_field :guests %>
+      <%= f.number_field :guests %>
     </label>
   </div>
 </div>
@@ -44,16 +44,21 @@
     <div class="row">
       <%= f.fields_for :client do |fa| %>
           <div class="large-3 columns">
-            <label>Заказчик
+            <label>ФИО заказчика
               <%= fa.text_field :name %>
             </label>
           </div>
-          <div class="large-3 columns">
+          <div class="large-2 columns">
+            <label>Название фирмы/место работы
+              <%= fa.text_field :company %>
+            </label>
+          </div>
+          <div class="large-2 columns">
             <label>Телефон заказчика
               <%= fa.text_field :phone,class:"phone_mask"  %>
             </label>
           </div>
-          <div class="large-3 columns">
+          <div class="large-2 columns">
             <label>Email заказчика
               <%= fa.text_field :email %>
             </label>
