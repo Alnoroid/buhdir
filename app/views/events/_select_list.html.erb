@@ -1,7 +1,7 @@
 <% unless smart_listing.empty? %>
 <select id="event-price">
   <option value="">
-    Выбрать или поиск
+    Выбери подкатегорию
   </option>
   <% smart_listing.collection.each do |o| %>
       <option value="<%= o.id %>">
