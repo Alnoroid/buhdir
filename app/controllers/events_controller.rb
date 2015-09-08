@@ -62,7 +62,8 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.event_curator_users.build
     @event.build_client
-    @event.event_prices.build(:price_id=>'438', :image_name => 'price/logo1.png', :price_category_id => '8', :custom_name => 'Работа офиса по подготовке мероприятия',:custom_description => 'Вознаграждение исполнителя, а также налоги и сборы, уплачиваемые на территории РФ.',:cost => '20',:count=>'1')
+    @event.event_prices.build(:image_name => 'price/logo1.png', :price_category_id => '8', :custom_name => 'Транспортные расходы',:custom_description => 'Расходы, связанные с перевозкой вышеперечисленного оборудования при монтаже и демонтаже оборудования, а также, расходы по доставке обслуживающего персонала к месту проведения мероприятия.',:cost => '3000',:count=>'1')
+    @event.event_prices.build(:image_name => 'price/logo1.png', :price_category_id => '8', :custom_name => 'Работа офиса по подготовке мероприятия',:custom_description => 'Вознаграждение исполнителя, а также налоги и сборы, уплачиваемые на территории РФ.',:cost => '5000',:count=>'1')
     smart_list
   end
 
