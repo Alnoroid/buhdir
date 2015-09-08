@@ -81,13 +81,11 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Мероприятие успешно создано.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
-        #format.html { redirect_to new_event_url, alert: @event.errors }
-
       end
     end
   end
@@ -97,7 +95,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Мероприятие успешно обновлено.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -112,7 +110,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'Мероприятие успешно удалено.' }
       format.json { head :no_content }
     end
   end

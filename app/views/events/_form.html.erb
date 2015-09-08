@@ -162,6 +162,12 @@
                 else{
                     $('#event_event_curator_users_attributes_0_user_id').attr('name','event[event_curator_users_attributes][0][custom]');
                 }
+            },
+            render:{
+                option_create: function(data, escape) {
+                    return '<div class="create">Добавить <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                }
+
             }
         });
 
@@ -180,6 +186,9 @@
             labelField: 'title',
             searchField: ['title','id'],
             render:{
+                option_create: function(data, escape) {
+                    return '<div class="create">Добавить <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                },
                 item: function(item, escape)
                 {
                     var itemarray = item.title.split('|');
@@ -257,7 +266,6 @@
                 insertedItem.find('.pricefrom').text('От ' + price1);
             }
             }
-            //insertedItem.find('.pricefrom').text(maxprice);
 
             insertedItem.find('.price1').val(maxprice);
             insertedItem.find('.count').val("1");
