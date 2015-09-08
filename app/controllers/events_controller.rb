@@ -49,7 +49,7 @@ class EventsController < ApplicationController
     @user = User.find(@usernameid)
 
       respond_to do |format|
-        format.docx { headers["Content-Disposition"] = "attachment; filename=\"event" + DateTime.now.to_formatted_s(:number) + ".docx\"" }
+        format.docx { headers["Content-Disposition"] = "attachment; filename=\"КП " + params[:event][:name] + ".docx\"" }
     end
   end
 
