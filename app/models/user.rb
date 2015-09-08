@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
 
   validates :password, confirmation: true,:length => { :within => 6..40 }, :on => :create
   validates :username, uniqueness: true
+
+  def curator_name_initials
+    "#{self.name.first}. #{self.surname}"
+  end
 end

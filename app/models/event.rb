@@ -15,4 +15,7 @@ class Event < ActiveRecord::Base
   scope :event_curator_users_filter, -> (curator) {joins(:event_curator_users).where(event_curator_users:{user_id:curator})}
   scope :state_filter, -> (state) {where(condition: state)}
   scope :date_search, -> (date) {where("MONTH(date_start) = ? AND YEAR(date_start) = ?",date.month,date.year)}
+
+
+
 end
