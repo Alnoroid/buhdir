@@ -241,18 +241,23 @@
 
             price1 = parseInt($(".selectize-dropdown-content .selected .price1").text().trim())
             price2 = parseInt($(".selectize-dropdown-content .selected .price2").text().trim())
-            if (isNaN(price2)){
+            if (isNaN(price2) || price2 == 0){
                 maxprice = price1
+                insertedItem.find('.pricefrom').text('От ' + price1);
             }
             else
             {
             if (price2 > price1){
                 maxprice = price2
+                insertedItem.find('.pricefrom').text('От ' + price1);
+                insertedItem.find('.priceto').text('До ' + price2);
             }
                 else{
              maxprice = price1
+                insertedItem.find('.pricefrom').text('От ' + price1);
             }
             }
+            //insertedItem.find('.pricefrom').text(maxprice);
 
             insertedItem.find('.price1').val(maxprice);
             insertedItem.find('.count').val("1");
@@ -279,6 +284,9 @@
         jQuery(function($){
             $(".phone_mask").mask("9-999-999-9999");
         });
+
+        $("#event_price_table tr:nth-child(1) .pricefrom").text("От 3000")
+        $("#event_price_table tr:nth-child(2) .pricefrom").text("От 5000")
 
 function sortByCatId(){
     var $tbody = $('.showtable tbody');
