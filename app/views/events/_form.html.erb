@@ -134,7 +134,6 @@
 <div class="row">
     <div class="large-4 columns">
       <%= f.submit "Создать предложение",id:"toword",  class:"button expand" %>
-      <%= image_tag("price/arts/afrika.jpg") %>
       </div>
       <div class="large-4 columns">
       <%= f.submit "Создать мероприятие",id:"createnew", class:"button expand" %>
@@ -246,7 +245,7 @@
             insertedItem.find('.description').val($(".selectize-dropdown-content .selected .description").text().trim());
             var imageitem = $(".selectize-dropdown-content .selected .image").attr("src").trim();
             insertedItem.find('.image').attr("src",imageitem);
-            insertedItem.find('.imageurl').val(imageitem.replace("/assets/",""));
+            insertedItem.find('.imageurl').val(imageitem);
 
 
             price1 = parseInt($(".selectize-dropdown-content .selected .price1").text().trim())

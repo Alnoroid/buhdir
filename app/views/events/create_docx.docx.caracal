@@ -234,9 +234,11 @@ docx.p 'Смета проведения события', align: :center, bold: t
 @a.push('Фото','Статья расходов','Пояснение','Цена (руб.)','Кол-во','Итого (руб.)')
 @b.push(@a)
 @a = Array.new
+
 params[:event][:event_prices_attributes].values.each do |item|
+  path_to_img = image_url(item[:image_name])
   imageforprice = Caracal::Core::Models::TableCellModel.new do
-    img 'http://31.31.192.117/images/'+ item[:image_name], width: 60, height: 45
+    img path_to_img, width: 60, height: 45
   end
 
   @a.push(imageforprice)
