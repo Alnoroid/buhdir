@@ -236,7 +236,7 @@ docx.p 'Смета проведения события', align: :center, bold: t
 @a = Array.new
 
 params[:event][:event_prices_attributes].values.each do |item|
-  path_to_img = image_url("thumb/" + item[:image_name])
+  path_to_img = image_url(item[:image_name])
   imageforprice = Caracal::Core::Models::TableCellModel.new do
     img path_to_img, width: 100, height: 100
   end
