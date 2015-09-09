@@ -238,7 +238,7 @@ docx.p 'Смета проведения события', align: :center, bold: t
 params[:event][:event_prices_attributes].values.each do |item|
   path_to_img = image_url(item[:image_name])
   imageforprice = Caracal::Core::Models::TableCellModel.new do
-    img path_to_img, width: 60, height: 45
+    img path_to_img, width: 140, height: 140
   end
 
   @a.push(imageforprice)

@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper SmartListing::Helper
 
-
   def smart_list
     if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
       events_new_scope = Price.catsearch(params[:price_category_filter])

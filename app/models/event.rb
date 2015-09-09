@@ -17,5 +17,4 @@ class Event < ActiveRecord::Base
   scope :date_search, -> (date) {where("MONTH(date_start) = ? AND YEAR(date_start) = ?",date.month,date.year)}
 
 
-
 end
