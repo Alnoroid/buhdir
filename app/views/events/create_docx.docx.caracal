@@ -255,7 +255,7 @@ docx.table @b do
   border_size    10          # sets the border width. defaults to 0. units in twips.
   cell_style rows[0], bold: true, align: :center
   cell_style cols[0], width: 1500
-  cell_style cols[1], width: 1500
+  cell_style cols[1], width: 1600
   cell_style cols[3], width: 1200
   cell_style cols[4], width: 1000
   cell_style cols[5], width: 1200
