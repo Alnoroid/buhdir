@@ -208,7 +208,7 @@
                     if (itemarray[2].trim() == 'images/articles/logo1.png') {
                         itemarray[2] = '/assets/price/logo1.png';
                     }
-                    var imageitem = itemarray[2].replace("images/","/assets/");
+                    var imageitem = itemarray[2].replace("images/images/","/assets/");
                     return '<div>'+
                     '<img class="image" width="50" height="38" src="' + imageitem + '"/>' +
                     (itemarray[0] ? '<span class="title">' + itemarray[0] + '</span>' : "")+

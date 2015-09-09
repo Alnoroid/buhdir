@@ -76,3 +76,6 @@ gem 'htmltoword'
 
 #Потому что Webbricks тупой
 gem "thin"
+
+#Чтоб работали табы
+gem 'jquery-turbolinks'
