@@ -80,7 +80,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to action: "index", notice: 'Мероприятие успешно создано.' }
+        format.html { redirect_to events_url, notice: 'Мероприятие успешно создано.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
