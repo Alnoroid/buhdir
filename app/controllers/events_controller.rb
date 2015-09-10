@@ -80,7 +80,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Мероприятие успешно создано.' }
+        format.html { redirect_to action: "index", notice: 'Мероприятие успешно создано.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -94,7 +94,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Мероприятие успешно обновлено.' }
+        format.html { redirect_to action: "index", notice: 'Мероприятие успешно обновлено.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
