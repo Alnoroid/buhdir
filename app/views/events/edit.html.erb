@@ -1,6 +1,9 @@
-<h1>Editing Event</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<% provide(:title, "Редактировать коммерческое предложение") %>
+<div class="row">
+  <div class="small-6 large-centered columns">
+    <h3>Редактировать коммерческое предложение</h3>
+  </div>
+</div>
+<div class="row">
+  <%= render 'form' %>
+</div>

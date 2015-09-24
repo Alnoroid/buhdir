@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   #root :to => 'events#show', format: 'docx'
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
+
   post 'generatedocx' => 'events#create_docx', format: 'docx'
+
   TheRoleManagementPanel::Routes.mixin(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
