@@ -41,128 +41,74 @@ docx.p '«' + params[:event][:name] + '»', align: :center, italic: true, bold: 
   docx.p
 end
 
-P11 = Caracal::Core::Models::TableCellModel.new do
-  p
-  p 'Ваш личный агент:'
-  p
-end
+username = '' + @user.name
+userphone = @user.phone + ''
+useremail = @user.email + ''
 
-x1 = '' + @user.name
-
-P12 = Caracal::Core::Models::TableCellModel.new do
+X11 = Caracal::Core::Models::TableCellModel.new do
   p
-  p x1
+  p 'Ваш личный агент: ' + username
   p
-end
-
-P13 = Caracal::Core::Models::TableCellModel.new do
-  p 'Телефон'
+  p 'Телефон: ' + userphone
   p
-  p 'E-mail'
-end
-
-x1 = @user.phone + ''
-x2 = @user.email + ''
-
-P14 = Caracal::Core::Models::TableCellModel.new do
-  p x1
-  p
-  p x2
-end
-
-P71 = Caracal::Core::Models::TableCellModel.new do
-  p
-  p 'Заказчик:'
+  p 'e-mail: ' + useremail
   p
 end
 
-x1 = params[:event][:client_attributes][:name] + ''
+clientname = params[:event][:client_attributes][:name] + ''
+clientphone = params[:event][:client_attributes][:phone] + ''
+clientmail = params[:event][:client_attributes][:email] + ''
 
-P72 = Caracal::Core::Models::TableCellModel.new do
+X12 = Caracal::Core::Models::TableCellModel.new do
   p
-  p x1
+  p 'Заказчик: ' + clientname
+  p
+  p 'Телефон: ' + clientphone
+  p
+  p 'e-mail: ' + clientmail
   p
 end
 
+if params[:event][:date_start].to_s.blank? then
+      datestart = ''
+      timestart = ''
+      calctimefinish = ''
+else
+      datestart = Date.parse(params[:event][:date_start]).strftime("%d.%m")
+      timestart = Time.parse(params[:event][:date_start]).strftime("%H:%M")
+      calctimefinish = (timestart.to_time - 1.hours).strftime("%H:%M")
+end
 
+place = params[:event][:place]
+guestcount = params[:event][:guests]
 
-P73 = Caracal::Core::Models::TableCellModel.new do
-  p 'Телефон'
+if params[:event][:date_finish].to_s.blank? then
+      timefinish = ''
+else
+      timefinish = DateTime.parse(params[:event][:date_finish]).strftime("%H:%M")
+end
+
+X13 = Caracal::Core::Models::TableCellModel.new do
   p
-  p 'E-mail'
-end
-
-x1 = params[:event][:client_attributes][:phone] + ''
-x2 = params[:event][:client_attributes][:email] + ''
-
-P74 = Caracal::Core::Models::TableCellModel.new do
-  p x1
+  p 'Место: ' + place
   p
-  p x2
+  p
+  p
+  p 'Количество гостей: ' + guestcount
+  p
 end
 
-c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
-  table [[P11],['Дата проведения:'],['Место проведения:'],['Кол-во гостей:'],['Начало:'],['Финал:'],[P71]] do
-    border_top do
-        color   '000000'
-        line    :single
-        size    1
-        spacing 0
-    end
-    border_horizontal do
-              color   '000000'
-              line    :single
-              size    1
-              spacing 0
-    end
-    cell_style cols[0], italic: true
-    cell_style cells, size: 18, margins: { top: 50, bottom: 0, left: 100, right: 0 }
-  end
+X14 = Caracal::Core::Models::TableCellModel.new do
+  p
+  p 'Дата проведения: ' + datestart
+  p
+  p 'Начало: Сбор гостей с ' + timestart + ' до ' + calctimefinish
+  p
+  p 'Финал: ' + timefinish
+  p
 end
 
-    if params[:event][:date_start].to_s.blank? then
-      x1 = ''
-      x4 = ''
-      x5 = ''
-    else
-      x1 = Date.parse(params[:event][:date_start]).strftime("%d.%m")
-      x4 = Time.parse(params[:event][:date_start]).strftime("%H:%M")
-      x5 = (x4.to_time - 1.hours).strftime("%H:%M")
-    end
-
-x2 = params[:event][:place]
-x3 = params[:event][:guests]
-
-    if params[:event][:date_finish].to_s.blank? then
-      x6 = ''
-    else
-      x6 = DateTime.parse(params[:event][:date_finish]).strftime("%H:%M")
-    end
-
-
-
-
-c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 0 } do
-  table [[P12,P13,P14],[x1,'',''],[x2,'',''],[x3,'',''],['Сбор гостей с '+ x5 +' до ' + x4,'',''],[x6,'',''],[P72,P73, P74]]  do
-  border_horizontal do
-                color   '000000'
-                line    :single
-                size    1
-                spacing 0
-      end
-      border_vertical do
-                      color   '000000'
-                      line    :single
-                      size    1
-                      spacing 0
-      end
-
-        cell_style cols[1], italic: true, align: :right
-        cell_style cells, size: 18, margins: { top: 50, bottom: 0, left: 100, right: 100 }
-    end
-end
-
-docx.table [[c1,c2]] do
+docx.table [[X11,X12],[X13,X14]] do
   border_size    4          # sets the border width. defaults to 0. units in twips.
   border_spacing 0
 border_top do
@@ -195,8 +141,10 @@ border_top do
               size    1
               spacing 0
     end
-    cell_style cols[0], width: 1900
 end
+
+
+
 docx.page
 docx.p 'Краткое резюме',style: 'Custom2'
 docx.p 'группы компаний «Идеальный праздник»',style: 'Custom2'
