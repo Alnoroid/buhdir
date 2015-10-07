@@ -1,27 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Contacts</h1>
+<%= link_to 'Новый контакт', new_contact_path %>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Contact name</th>
-      <th>Address</th>
-      <th>W contact</th>
-      <th>Web address</th>
+      <th>Наименование</th>
+      <th>Контактное лицо</th>
+      <th>Адресс</th>
+      <th>Откуда</th>
+      <th>Сайт</th>
       <th>Email</th>
-      <th>Description</th>
-      <th>Special</th>
-      <th>Fee</th>
-      <th>Phone1</th>
-      <th>Phone2</th>
-      <th>Rating</th>
-      <th>Publish</th>
-      <th>Publish date</th>
-      <th>Hot</th>
-      <th>User</th>
-      <th>Contact type</th>
+      <th>Описание</th>
+      <th>Дополнительно</th>
+      <th>Оклад</th>
+      <th>Телефон 1</th>
+      <th>Телефон 2</th>
+      <th>Рейтинг</th>
+      <th>Опубликован</th>
+      <th>Дата публикации</th>
+      <th>Горячее</th>
+      <th>Кто пригласил</th>
+      <th>Тип контакта</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -44,11 +45,11 @@
         <td><%= contact.publish %></td>
         <td><%= contact.publish_date %></td>
         <td><%= contact.hot %></td>
-        <td><%= contact.user_id %></td>
-        <td><%= contact.contact_type_id %></td>
-        <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= contact.user.name %></td>
+        <td><%= contact.contact_type.name %></td>
+        <td><%= link_to 'Показать', contact %></td>
+        <td><%= link_to 'Редактировать', edit_contact_path(contact) %></td>
+        <td><%= link_to 'Удалить', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -56,4 +57,3 @@
 
 <br>
 
-<%= link_to 'New Contact', new_contact_path %>
