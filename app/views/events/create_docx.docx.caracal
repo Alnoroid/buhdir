@@ -182,7 +182,8 @@ docx.p 'Смета проведения события', align: :center, bold: t
 @a.push('Фото','Статья расходов','Пояснение','Цена (руб.)','Кол-во','Итого (руб.)')
 @b.push(@a)
 @a = Array.new
-
+@totalprice = 0
+@undefflag = 0
 params[:event][:event_prices_attributes].values.each do |item|
   path_to_img = image_url(item[:image_name])
   path_to_img = URI.encode(path_to_img)
@@ -191,16 +192,31 @@ params[:event][:event_prices_attributes].values.each do |item|
     img path_to_img, width: 100, height: 100
   end
 
+  
+  
   @a.push(imageforprice)
   @a.push(item[:custom_name])
   @a.push(item[:custom_description])
   @a.push(item[:cost])
   @a.push(item[:count])
-  @a.push(item[:cost].to_i * item[:count].to_i)
+    if(is_number?(item[:cost]))
+		costcalc = item[:cost].to_i * item[:count].to_i
+		@a.push(costcalc)
+		@totalprice = @totalprice + costcalc
+	else
+	  @undefflag = 1
+	  @a.push('?????')
+    end
   @b.push(@a)
   @a = Array.new
 end
+if (@undefflag == 0)
+  @a.push('Итого','','','','',@totalprice)
+else
+  @a.push('Итого','','','','','?????')
+end
 
+@b.push(@a)
 docx.table @b do
   border_size    10          # sets the border width. defaults to 0. units in twips.
   cell_style rows[0], bold: true, align: :center
