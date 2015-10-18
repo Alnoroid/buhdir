@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     if (params[:price_category_filter] != nil) && (params[:price_category_filter] != "")
       events_new_scope = Price.catsearch(params[:price_category_filter])
     else
-      events_new_scope = Price.where("price_category_id < '11'")
+      events_new_scope = Price.where("price_category_id < '12'")
     end
 
     @prices = smart_listing_create :prices,events_new_scope, partial: "events/select_list",unlimited_per_page: true,page_sizes: [1000],default_sort: {id: "asc"}

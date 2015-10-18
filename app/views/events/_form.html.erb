@@ -136,6 +136,23 @@
         </table>
       </div>
     </div>
+    <div class="row">
+      <div class="large-12 columns">
+          <%= link_to 'Информация в конце документа', '#', class: "button expand dropinfo" %>
+      </div>
+    </div>
+    <div class="row" style="visibility: hidden;">
+    <div class="large-4 columns">
+      <p>test</p>
+    </div>
+    <div class="large-4 columns">
+      <p>test</p>
+    </div>
+    <div class="large-4 columns">
+      <p>test</p>
+    </div>
+    </div>
+
 <div class="row">
     <div class="large-4 columns">
       <%= f.submit "Создать предложение",id:"toword",  class:"button expand" %>
@@ -172,7 +189,6 @@
                 option_create: function(data, escape) {
                     return '<div class="create">Добавить <strong>' + escape(data.input) + '</strong>&hellip;</div>';
                 }
-
             }
         });
 
@@ -274,7 +290,7 @@
              maxprice = price1
                 insertedItem.find('.pricefrom').text('От ' + price1);
             }
-            }
+            }ga
 
             insertedItem.find('.price1').val(maxprice);
             insertedItem.find('.count').val("1");
