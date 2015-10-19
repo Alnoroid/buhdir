@@ -227,11 +227,11 @@ docx.table @b do
   cell_style cols[5], width: 900
 end
 end
-
+if(params.has_key?(:info))
 if(params[:info].any?)
 docx.page
 
 infoarray = params[:info]
 docx p infoarray[0]
 end
-
+end
