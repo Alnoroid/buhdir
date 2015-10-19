@@ -229,9 +229,10 @@ end
 end
 if(params.has_key?(:info))
 if(params[:info].any?)
-docx.page
 
 infoarray = params[:info]
+
+end
+end
+
 docx p infoarray[0]
-end
-end
