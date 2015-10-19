@@ -138,20 +138,109 @@
     </div>
     <div class="row">
       <div class="large-12 columns">
-          <%= link_to 'Информация в конце документа', '#', class: "button expand dropinfo" %>
+          <%= link_to 'Информация в конце документа', '', class: "button expand dropinfo" %>
       </div>
     </div>
-    <div class="row" style="visibility: hidden;">
-    <div class="large-4 columns">
-      <p>test</p>
+    <div class="info" style="display:none;">
+    <div class="row">
+    <div class="large-4 columns panel">
+      <div class="row collapse prefix-radius">
+        <div class="small-1 columns">
+          <%= check_box_tag 'info[0]','1',false,class: 'prefix inline' %>
+        </div>
+        <div class="small-11 columns">
+          <%= label_tag 'info[0]', "На основании ГК часть 4 Права на результат интеллектуальной деятельности и средства индивидуализации,  авторский текст программы (сценария)  приведен частично, так как данная разработка является собственностью подрядчиков Группы компаний Идеальный праздник." %>
+        </div>
+      </div>
     </div>
-    <div class="large-4 columns">
-      <p>test</p>
+    <div class="large-4 columns panel">
+      <div class="row collapse prefix-radius">
+        <div class="small-1 columns">
+          <%= check_box_tag 'info[1]','1',false,class: 'prefix inline' %>
+        </div>
+        <div class="small-11 columns">
+          <%= label_tag 'info[1]', "Разброс цен  в коммерческом предложении, прежде всего, зависит от  количества единиц предлагаемого оборудования, услуг, работ, уровня сложности,  времени, затраченного на реализацию описываемой статьи, а так же, от спроса  предлагаемых услуг на рынке эвент  услуг." %>
+        </div>
+      </div>
     </div>
-    <div class="large-4 columns">
-      <p>test</p>
+    <div class="large-4 columns panel">
+      <div class="row collapse prefix-radius">
+        <div class="small-1 columns">
+          <%= check_box_tag 'info[2]','1',false,class: 'prefix inline' %>
+        </div>
+        <div class="small-11 columns">
+          <%= label_tag 'info[2]', "Данный документ является сугубо примерным и служит лишь материалом для начала переговорной стадии. Каждая статья, в силу изменения качества и количества, может быть, как уменьшена, так и удалена полностью." %>
+        </div>
+      </div>
     </div>
+</div>
+      <div class="row">
+      <div class="large-4 columns panel">
+        <div class="row collapse prefix-radius">
+          <div class="small-1 columns">
+            <%= check_box_tag 'info[3]','1',false,class: 'prefix inline' %>
+          </div>
+          <div class="small-11 columns">
+            <%= label_tag 'info[3]', "Все судейские бригады являются аттестованными арбитрами, так как наше Агентство долгие годы плодотворно работает с Российским Государственным Университетом Физической Культуры и Туризма. Более того, наши спортивные агенты, являются выпускниками вышеуказанного заведения, что говорит о профессиональной подготовке при организации и проведении спортивных мероприятий." %>
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns panel">
+        <div class="row collapse prefix-radius">
+          <div class="small-1 columns">
+            <%= check_box_tag 'info[4]','1',false,class: 'prefix inline' %>
+          </div>
+          <div class="small-11 columns">
+            <%= label_tag 'info[4]', "Данную программу можно сделать более выразительной и насыщенной, в случаях использования эстрадно – технических средств (Эстрадный свет, лазерное шоу, видео проекционное оборудование и т.д.)" %>
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns panel">
+        <div class="row collapse prefix-radius">
+          <div class="small-1 columns">
+            <%= check_box_tag 'info[5]','1',false,class: 'prefix inline' %>
+          </div>
+          <div class="small-11 columns">
+            <%= label_tag 'info[5]', "В связи с загруженностью артистического состава, календарной особенностью, а также неопределенностью в бюджете праздника, организаторы оставляют за собой право замены некоторых выступлений на равнозначные номера ( как по времени выступления, так и по жанру)." %>
+          </div>
+        </div>
+      </div>
+</div>
+      <div class="row">
+      <div class="large-4 columns panel">
+        <div class="row collapse prefix-radius">
+          <div class="small-1 columns">
+            <%= check_box_tag 'info[6]','1',false,class: 'prefix inline' %>
+          </div>
+          <div class="small-11 columns">
+            <%= label_tag 'info[6]', "Естественно, что экстренные замены в артистическом составе, будут проходить только после согласования с заказчиками." %>
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns panel">
+        <div class="row collapse prefix-radius">
+          <div class="small-1 columns">
+            <%= check_box_tag 'info[7]','1',false,class: 'prefix inline' %>
+          </div>
+          <div class="small-11 columns">
+            <%= label_tag 'info[7]', "Следует учитывать, что организаторы проекта проводили маркетинговые исследования в ХХХ году. Задержка реализации данного проекта может привести как к увеличению, так и к уменьшению расходной части бюджета." %>
+          </div>
+        </div>
+
+      </div>
+      <div class="large-4 columns panel">
+        <div class="row collapse prefix-radius">
+          <div class="small-1 columns">
+            <%= check_box_tag 'info[8]','1',false,class: 'prefix inline' %>
+          </div>
+          <div class="small-11 columns">
+            <%= label_tag 'info[8]', "Время начала праздника может быть смещено (по временной сетке), т.к. это зависит от времени прибытия почетных гостей." %>
+          </div>
+        </div>
+      </div>
+        </div>
     </div>
+
 
 <div class="row">
     <div class="large-4 columns">
@@ -166,6 +255,14 @@
 </div>
 <% end %>
     <script>
+      //dropdown для выбора инфо
+      $('.dropinfo').click(function(event) {
+          event.preventDefault();
+          $( ".info" ).slideToggle( "slow", function() {
+              // Animation complete.
+          });
+          });
+
         $('.date_picker').fdatetimepicker({
             language: 'ru',
             weekStart: 1,
