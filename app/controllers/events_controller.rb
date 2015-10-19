@@ -47,6 +47,8 @@ class EventsController < ApplicationController
     end
     @user = User.find(@usernameid)
 
+    @infoarray = params[:info]
+
       respond_to do |format|
         format.docx { headers["Content-Disposition"] = "attachment; filename=\"КП " + params[:event][:name] + ".docx\"" }
     end
